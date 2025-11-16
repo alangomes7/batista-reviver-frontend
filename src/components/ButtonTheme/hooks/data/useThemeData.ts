@@ -21,6 +21,7 @@ export function useThemeData(): UseThemeReturn {
   const [theme, setTheme] = useState<Theme>("root");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
 
     // 1. Check for a theme in localStorage
@@ -46,13 +47,13 @@ export function useThemeData(): UseThemeReturn {
     const root = window.document.documentElement;
 
     // 1. Remove all theme classes
-    root.classList.remove("dark", "colored");
+    root.classList.remove("dark", "light");
 
     // 2. Add the active theme class (if not 'root')
     if (theme === "dark") {
       root.classList.add("dark");
-    } else if (theme === "colored") {
-      root.classList.add("colored");
+    } else if (theme === "light") {
+      root.classList.add("light");
     }
     // 'root' theme is the default (no class)
 

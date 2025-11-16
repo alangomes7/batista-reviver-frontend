@@ -1,7 +1,7 @@
-import { Theme } from "@/components/ButtonTheme/types";
+import { Theme } from "../../types";
 
 export interface ThemeHandlers {
-  /** Toggles between 'root', 'dark', and 'colored' themes */
+  /** Toggles between 'root', 'light', and 'dark' themes */
   handleThemeSwitch: () => void;
 }
 
@@ -13,9 +13,9 @@ export function useThemeHandlers(
 ): ThemeHandlers {
   const handleThemeSwitch = (): void => {
     setTheme((prev) => {
-      if (prev === "root") return "dark";
-      if (prev === "dark") return "colored";
-      if (prev === "colored") return "root";
+      if (prev === "root") return "light";
+      if (prev === "light") return "dark";
+      if (prev === "dark") return "root";
 
       // Fallback in case of an unexpected state
       return "root";

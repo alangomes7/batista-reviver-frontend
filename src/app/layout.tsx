@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NavBar from "../components/NavBar";
+import ButtonTheme from "../components/ButtonTheme";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,8 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-background text-foreground min-h-screen">
+      <body>
+        <NavBar />
         {children}
+        <ButtonTheme className="fixed bottom-4 right-4 z-50" />
       </body>
     </html>
   );

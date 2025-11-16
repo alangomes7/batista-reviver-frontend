@@ -1,9 +1,20 @@
-/* --- Base Theme Variables (Colored Theme as Default) --- */
+/* ========================================================================== */
+/*  BRAND THEME — BASE, LIGHT, DARK                                           */
+/*  Colors built with OKLCH for perfect contrast + vibrancy                  */
+/* ========================================================================== */
+
+/* --- Base Theme (Brand as Default) --------------------------------------- */
 :root {
+  /* Border Radius System */
   --radius: 0.625rem;
+
+  /* Brand */
   --brand_color: oklch(0.65 0.203 26.2);
 
-  /* Light background but with brand-driven primary system */
+  /* -------------------------------------------------- */
+  /*  LIGHT MODE (DEFAULT ROOT)                         */
+  /* -------------------------------------------------- */
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
@@ -13,34 +24,37 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
 
-  /* --- PRIMARY SYSTEM DEFAULTS TO BRAND COLOR --- */
+  /* Primary system uses brand color */
   --primary: var(--brand_color);
   --primary-foreground: oklch(0.985 0 0);
 
+  /* Neutrals + Subtle Colored UI */
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
 
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
 
+  /* Accent = Brand Color */
   --accent: var(--brand_color);
   --accent-foreground: oklch(0.985 0 0);
 
+  /* Destructive (red tone) */
   --destructive: oklch(0.577 0.245 27.325);
 
-  /* Slight tint of brand color for borders */
+  /* Borders use brand tint */
   --border: color-mix(in oklch, var(--brand_color) 15%, oklch(0.922 0 0));
   --input: color-mix(in oklch, var(--brand_color) 20%, oklch(0.922 0 0));
   --ring: color-mix(in oklch, var(--brand_color) 40%, oklch(0.708 0 0));
 
-  /* Charts keep good contrast colors */
+  /* Chart palette */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
 
-  /* Sidebar integrated with brand color */
+  /* Sidebar uses brand palette */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: var(--brand_color);
@@ -55,7 +69,9 @@
   --sidebar-ring: var(--brand_color);
 }
 
-/* --- Light Theme Variables (Black & White) --- */
+/* ========================================================================== */
+/*  LIGHT MODE VARIANT (True Black/White Neutral Theme)                       */
+/* ========================================================================== */
 .light {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -66,7 +82,6 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
 
-  /* --- PRIMARY SYSTEM DEFAULTS TO BLACK --- */
   --primary: oklch(0.145 0 0);
   --primary-foreground: oklch(0.985 0 0);
 
@@ -79,21 +94,19 @@
   --accent: oklch(0.145 0 0);
   --accent-foreground: oklch(0.985 0 0);
 
-  --destructive: oklch(0.577 0.245 27.325); /* Kept red for errors */
+  --destructive: oklch(0.577 0.245 27.325);
 
-  /* Neutral grays for borders */
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
 
-  /* Grayscale chart ramp */
+  /* Neutral charts */
   --chart-1: oklch(0.2 0 0);
   --chart-2: oklch(0.4 0 0);
   --chart-3: oklch(0.6 0 0);
   --chart-4: oklch(0.75 0 0);
   --chart-5: oklch(0.85 0 0);
 
-  /* Sidebar is neutral */
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.145 0 0);
@@ -104,9 +117,11 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* --- Dark Theme Variables (Brand Color Presence) --- */
+/* ========================================================================== */
+/*  DARK MODE VARIANT (Brand-Tinted Modern Dark)                              */
+/* ========================================================================== */
 .dark {
-  --background: oklch(0.145 0.02 26.2); /* subtle brand tint */
+  --background: oklch(0.145 0.02 26.2);
   --foreground: oklch(0.985 0 0);
 
   --card: oklch(0.205 0.03 26.2);
@@ -115,7 +130,6 @@
   --popover: oklch(0.205 0.03 26.2);
   --popover-foreground: oklch(0.985 0 0);
 
-  /* Brand color as primary highlight */
   --primary: var(--brand_color);
   --primary-foreground: oklch(0.985 0 0);
 
@@ -134,9 +148,10 @@
   --input: color-mix(in oklch, var(--brand_color) 25%, oklch(1 0 0 / 15%));
   --ring: var(--brand_color);
 
+  /* Charts include brand tone */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: var(--brand_color); /* brand integrated into charts */
+  --chart-3: var(--brand_color);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
 
@@ -154,6 +169,9 @@
   --sidebar-ring: var(--brand_color);
 }
 
+/* ========================================================================== */
+/*  TAILWIND THEME TOKEN EXPORTS                                              */
+/* ========================================================================== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -203,8 +221,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* 3 — Light variant */
+/* Tailwind Variants */
 @custom-variant light (&:is(.light *));
-
-/* 4 — Dark variant */
 @custom-variant dark (&:is(.dark *));

@@ -1,0 +1,215 @@
+import Link from "next/link";
+import { DesktopNavProps } from "../types";
+
+export const DesktopNav = ({ data, handlers }: DesktopNavProps) => {
+  const { isMobile, pathname, activeStates, linkClasses } = data;
+  const {
+    isIgrejaOpen,
+    isMissoesOpen,
+    isConteudoOpen,
+    igrejaMenuRef,
+    missoesMenuRef,
+    conteudoMenuRef,
+    setIsIgrejaOpen,
+    setIsMissoesOpen,
+    setIsConteudoOpen,
+  } = handlers;
+
+  const { isIgrejaActive, isMissoesActive, isConteudoActive } = activeStates;
+  const {
+    navLinkClass,
+    menuItemClass,
+    activeNavLinkClass,
+    activeMenuItemClass,
+  } = linkClasses;
+
+  return (
+    <>
+      {/* Desktop Menu */}
+      <div className="hidden md:flex items-center space-x-2">
+        {/* --- A Igreja Dropdown --- */}
+        <div
+          ref={igrejaMenuRef}
+          className="relative"
+          onMouseEnter={() => !isMobile && setIsIgrejaOpen(true)}
+          onMouseLeave={() => !isMobile && setIsIgrejaOpen(false)}
+        >
+          <button
+            onClick={() => isMobile && setIsIgrejaOpen(!isIgrejaOpen)}
+            className={`${
+              isIgrejaActive ? activeNavLinkClass : navLinkClass
+            } w-full`}
+          >
+            A Igreja
+          </button>
+          {isIgrejaOpen && (
+            <div className="absolute right-0 w-56 dropdown-menu-bg border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+              <Link
+                href="/igreja/trilha-reviver"
+                className={
+                  pathname === "/igreja/trilha-reviver"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Trilha Reviver
+              </Link>
+              <Link
+                href="/igreja/quem-somos"
+                className={
+                  pathname === "/igreja/quem-somos"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Quem somos
+              </Link>
+              <Link
+                href="/igreja/ministerios"
+                className={
+                  pathname === "/igreja/ministerios"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Ministérios
+              </Link>
+              <Link
+                href="/igreja/visao-fe-cruz"
+                className={
+                  pathname === "/igreja/visao-fe-cruz"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Visão, fé e cruz
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <Link
+          href="/programacao"
+          className={
+            pathname.startsWith("/programacao")
+              ? activeNavLinkClass
+              : navLinkClass
+          }
+        >
+          Programação
+        </Link>
+
+        {/* --- Missões Dropdown --- */}
+        <div
+          ref={missoesMenuRef}
+          className="relative"
+          onMouseEnter={() => !isMobile && setIsMissoesOpen(true)}
+          onMouseLeave={() => !isMobile && setIsMissoesOpen(false)}
+        >
+          <button
+            onClick={() => isMobile && setIsMissoesOpen(!isMissoesOpen)}
+            className={`${
+              isMissoesActive ? activeNavLinkClass : navLinkClass
+            } w-full`}
+          >
+            Missões
+          </button>
+          {isMissoesOpen && (
+            <div className="absolute right-0 w-56 dropdown-menu-bg border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+              <Link
+                href="/missoes/celulas"
+                className={
+                  pathname === "/missoes/celulas"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Células
+              </Link>
+              <Link
+                href="/missoes/uma-nova-chance"
+                className={
+                  pathname === "/missoes/uma-nova-chance"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Uma Nova Chance
+              </Link>
+              <Link
+                href="/missoes/encontro-com-deus"
+                className={
+                  pathname === "/missoes/encontro-com-deus"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Encontro com Deus
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <Link
+          href="/contribuicao"
+          className={
+            pathname.startsWith("/contribuicao")
+              ? activeNavLinkClass
+              : navLinkClass
+          }
+        >
+          Contribuição
+        </Link>
+
+        {/* --- Conteúdo Dropdown --- */}
+        <div
+          ref={conteudoMenuRef}
+          className="relative"
+          onMouseEnter={() => !isMobile && setIsConteudoOpen(true)}
+          onMouseLeave={() => !isMobile && setIsConteudoOpen(false)}
+        >
+          <button
+            onClick={() => isMobile && setIsConteudoOpen(!isConteudoOpen)}
+            className={`${
+              isConteudoActive ? activeNavLinkClass : navLinkClass
+            } w-full`}
+          >
+            Conteúdo
+          </button>
+          {isConteudoOpen && (
+            <div className="absolute right-0 w-56 dropdown-menu-bg border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+              <Link
+                href="/conteudo/estudo-semanal"
+                className={
+                  pathname === "/conteudo/estudo-semanal"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Estudo semanal
+              </Link>
+              <Link
+                href="/conteudo/midias"
+                className={
+                  pathname === "/conteudo/midias"
+                    ? activeMenuItemClass
+                    : menuItemClass
+                }
+              >
+                Mídias
+              </Link>
+            </div>
+          )}
+        </div>
+        <a
+          href="https://store.igbatistareviver.com.br/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={navLinkClass}
+        >
+          Loja Use Reviver
+        </a>
+      </div>
+    </>
+  );
+};

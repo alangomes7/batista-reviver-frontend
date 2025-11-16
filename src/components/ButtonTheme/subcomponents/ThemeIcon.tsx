@@ -10,9 +10,9 @@ export interface ThemeIconProps {
 
 /**
  * Displays an icon corresponding to the current theme:
- * - 'root' (colored): PaletteIcon
- * - 'light': MoonIcon
- * - 'dark': SunIcon
+ * - 'root' (default colored theme): SunIcon
+ * - 'light' (black & white light theme): MoonIcon
+ * - 'dark' (brand-tinted dark theme): PaletteIcon
  */
 export function ThemeIcon({ theme }: ThemeIconProps) {
   if (theme === "light") {

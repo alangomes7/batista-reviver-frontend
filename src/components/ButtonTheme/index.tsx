@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useThemeData } from './hooks/data/useThemeData';
-import { useThemeHandlers } from './hooks/handlers/useThemeHandlers';
-import { ThemeIcon } from './subcomponents/ThemeIcon';
+import { useThemeData } from "./hooks/data/useThemeData";
+import { useThemeHandlers } from "./hooks/handlers/useThemeHandlers";
+import { ThemeIcon } from "./subcomponents/ThemeIcon";
 
 /**
- * Button to toggle between light and dark themes.
- * Persists theme in localStorage and updates the document root attribute.
+ * Button to toggle between light, dark, and colored themes.
+ * Persists theme in localStorage and updates the document root class.
  */
 export default function ButtonTheme() {
   const { theme, setTheme, mounted } = useThemeData();
@@ -21,8 +21,8 @@ export default function ButtonTheme() {
 
   if (!mounted) {
     return (
-      <button aria-label='Toggle theme' className={buttonClasses} disabled>
-        <ThemeIcon theme='light' />
+      <button aria-label="Toggle theme" className={buttonClasses} disabled>
+        <ThemeIcon theme="root" />
       </button>
     );
   }
@@ -30,7 +30,7 @@ export default function ButtonTheme() {
   return (
     <button
       onClick={handleThemeSwitch}
-      aria-label='Toggle theme'
+      aria-label="Toggle theme"
       className={buttonClasses}
     >
       <ThemeIcon theme={theme} />
@@ -38,5 +38,5 @@ export default function ButtonTheme() {
   );
 }
 
-export * from './hooks/data/useThemeData';
-export * from './types';
+export * from "./hooks/data/useThemeData";
+export * from "./types";

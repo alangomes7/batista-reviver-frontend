@@ -14,7 +14,7 @@
   //  Editor
   //  Configurações do editor de texto
   // ===================================================================
-  "editor.fontSize": 12,
+  "editor.fontSize": 14,
   "editor.lineNumbers": "on",
   "editor.tabSize": 2,
   "editor.glyphMargin": false,

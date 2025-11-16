@@ -1,7 +1,7 @@
-import { Theme } from '@/components/ButtonTheme/types';
+import { Theme } from "@/components/ButtonTheme/types";
 
 export interface ThemeHandlers {
-  /** Toggles between 'light' and 'dark' themes */
+  /** Toggles between 'root', 'dark', and 'colored' themes */
   handleThemeSwitch: () => void;
 }
 
@@ -9,10 +9,17 @@ export interface ThemeHandlers {
  * Provides handler functions for theme-related actions.
  */
 export function useThemeHandlers(
-  setTheme: React.Dispatch<React.SetStateAction<Theme>>,
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>
 ): ThemeHandlers {
   const handleThemeSwitch = (): void => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => {
+      if (prev === "root") return "dark";
+      if (prev === "dark") return "colored";
+      if (prev === "colored") return "root";
+
+      // Fallback in case of an unexpected state
+      return "root";
+    });
   };
 
   return { handleThemeSwitch };

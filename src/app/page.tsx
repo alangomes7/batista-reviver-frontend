@@ -1,3 +1,5 @@
+import { CarouselHomePage } from "@/components/Carousel/HomePage";
+
 export default function Home() {
-  return <h1>This page is on building</h1>;
+  return <CarouselHomePage />;
 }

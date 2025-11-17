@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useThemeHandlers } from "./hooks/handlers/useThemeHandlers";
 import { ThemeIcon } from "./subcomponents/ThemeIcon";
-import { useTheme } from "@/src/context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 
 type ButtonThemeProps = {
   className?: string;

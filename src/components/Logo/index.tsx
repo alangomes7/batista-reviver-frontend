@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { useTheme } from "@/src/context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 
 type LogoProps = {
   className?: string;

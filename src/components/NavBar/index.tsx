@@ -13,7 +13,10 @@ export default function NavBar({}: NavBarProps) {
   const { navRef } = handlers;
 
   return (
-    <nav ref={navRef} className={clsx("fixed top-0", "w-full z-50")}>
+    <nav
+      ref={navRef}
+      className={clsx("w-full z-50", "relative md:fixed md:top-0")}
+    >
       {/* -------- DESKTOP -------- */}
       <div className="md:flex justify-end">
         <DesktopNav
@@ -31,7 +34,7 @@ export default function NavBar({}: NavBarProps) {
         />
       </div>
 
-      {/* -------- MOBILE: DRAWER -------- */}
+      {/* -------- MOBILE -------- */}
       <div className="md:hidden">
         <MobileNav
           data={data}

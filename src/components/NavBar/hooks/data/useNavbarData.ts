@@ -28,14 +28,16 @@ export const useNavbarData = (): NavbarData => {
 
   // --- Base and Active Link Styles ---
   const navLinkClass =
-    "text-sm md:text-xl font-medium text-foreground/80 hover:text-foreground transition-all px-3 py-2 rounded-md hover:bg-foreground/5";
+    "text-xs sm:text-sm md:text-medium lg:text-base font-medium text-muted-foreground hover:text-foreground transition-all px-3 py-2 rounded-md hover:bg-muted";
 
   const menuItemClass =
-    "block px-4 py-2 text-sm md:text-lg text-foreground hover:bg-foreground/10 rounded-md";
+    "block px-4 py-2 text-xs sm:text-sm md:text-medium lg:text-base text-foreground hover:bg-muted rounded-md";
+
   const activeNavLinkClass =
-    "text-sm font-medium md:text-lg text-primary font-semibold transition-all bg-primary/10 px-3 py-2 rounded-md";
+    "text-xs sm:text-sm md:text-medium lg:text-base font-medium text-primary font-semibold transition-all bg-muted px-3 py-2 rounded-md";
+
   const activeMenuItemClass =
-    "block px-4 py-2 text-sm md:text-lg text-primary bg-primary/10 rounded-md";
+    "block px-4 py-2 text-xs sm:text-sm md:text-medium lg:text-base text-primary bg-muted rounded-md";
 
   // --- Logic for active dropdowns ---
   const isIgrejaActive = pathname.startsWith("/igreja");

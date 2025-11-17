@@ -48,9 +48,11 @@ export interface NavbarMenuHandlers {
 export interface DesktopNavProps {
   data: NavbarData;
   handlers: NavbarMenuHandlers;
+  className: string;
 }
 
 export interface MobileNavProps {
   data: NavbarData;
   handlers: NavbarMenuHandlers;
+  className: string;
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import Logo from "../Logo";
+import clsx from "clsx";
 import { useNavbarData } from "./hooks/data/useNavbarData";
 import { useNavbarMenu } from "./hooks/handle/useNavbarMenu";
 import { DesktopNav } from "./subcomponents/DesktopNav";
@@ -14,30 +13,36 @@ export default function NavBar({}: NavBarProps) {
   const { navRef } = handlers;
 
   return (
-    <nav
-      ref={navRef}
-      className="relative bg-background border-b border-border z-50"
-    >
-      <div className="relative flex items-center p-4">
-        {/* -------- MOBILE: CENTERED LOGO -------- */}
-        <div className="absolute left-1/2 -translate-x-1/2 md:hidden">
-          <Link href="/">
-            <Logo className="h-8 w-auto" />
-          </Link>
-        </div>
+    <nav ref={navRef} className={clsx("fixed top-0", "w-full z-50")}>
+      {/* -------- DESKTOP -------- */}
+      <div className="md:flex justify-end">
+        <DesktopNav
+          data={data}
+          handlers={handlers}
+          className={clsx(
+            "hidden md:flex",
+            "right-0",
+            "bg-background/80 dark:bg-background/30 backdrop-blur-xl",
+            "shadow-xl border border-border/40",
+            "px-6 py-3",
+            "rounded-l-4xl rounded-r-none",
+            "space-x-2"
+          )}
+        />
+      </div>
 
-        {/* -------- DESKTOP (logo + nav together) -------- */}
-        <div className="hidden md:flex items-center gap-8 mx-auto">
-          <Link href="/">
-            <Logo className="h-8 w-auto" />
-          </Link>
-          <DesktopNav data={data} handlers={handlers} />
-        </div>
-
-        {/* -------- MOBILE: DRAWER BUTTON (right) -------- */}
-        <div className="md:hidden ml-auto">
-          <MobileNav data={data} handlers={handlers} />
-        </div>
+      {/* -------- MOBILE: DRAWER -------- */}
+      <div className="md:hidden">
+        <MobileNav
+          data={data}
+          handlers={handlers}
+          className={clsx(
+            "h-10",
+            "flex justify-center items-center",
+            "bg-background border-b border-border",
+            "shadow-sm"
+          )}
+        />
       </div>
     </nav>
   );

@@ -1,16 +1,16 @@
 "use client";
 
 import clsx from "clsx";
-import { useThemeData } from "./hooks/data/useThemeData";
 import { useThemeHandlers } from "./hooks/handlers/useThemeHandlers";
 import { ThemeIcon } from "./subcomponents/ThemeIcon";
+import { useTheme } from "@/src/context/ThemeContext";
 
 type ButtonThemeProps = {
-  className?: string; // make optional
+  className?: string;
 };
 
 export default function ButtonTheme({ className = "" }: ButtonThemeProps) {
-  const { theme, setTheme, mounted } = useThemeData();
+  const { theme, setTheme, mounted } = useTheme();
   const { handleThemeSwitch } = useThemeHandlers(setTheme);
 
   const buttonClasses = `

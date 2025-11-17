@@ -1,12 +1,48 @@
+"use client";
+
 import clsx from "clsx";
 import Image from "next/image";
+import { useTheme } from "@/src/context/ThemeContext";
+
 type LogoProps = {
-  className: string;
+  className?: string;
 };
-export default function Logo({ className }: LogoProps) {
+
+const LOGO_BLACK = "/logo/Batista_Reviver-Logo_2026_png47.png"; // fallback / light
+const LOGO_WHITE = "/logo/Batista_Reviver-Logo_2026_png41.png"; // dark
+const LOGO_COLORED = "/logo/Batista_Reviver-Logo_2026_png43.png"; // root / special
+
+export default function Logo({ className = "" }: LogoProps) {
+  const { theme, mounted } = useTheme();
+
+  // 1) BEFORE hydration → safe default
+  if (!mounted) {
+    return (
+      <Image
+        src={LOGO_BLACK}
+        alt="Logo"
+        width={2160}
+        height={520}
+        className={clsx(className)}
+        priority
+      />
+    );
+  }
+
+  // 2) AFTER hydration → select correct logo
+  let logoSrc = LOGO_BLACK; // default
+
+  if (theme === "dark") {
+    logoSrc = LOGO_WHITE;
+  } else if (theme === "light") {
+    logoSrc = LOGO_BLACK;
+  } else if (theme === "root") {
+    logoSrc = LOGO_COLORED;
+  }
+
   return (
     <Image
-      src="/logo/Batista_Reviver-Logo_Sticker_2026_png35.png"
+      src={logoSrc}
       alt="Logo"
       width={2160}
       height={520}

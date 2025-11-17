@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "../components/NavBar";
 import ButtonTheme from "../components/ButtonTheme";
+import { ThemeProvider } from "../context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-br" suppressHydrationWarning>
       <body>
-        <NavBar />
-        {children}
-        <ButtonTheme className="fixed bottom-4 right-4 z-50" />
+        <ThemeProvider>
+          <NavBar />
+          {children}
+          <ButtonTheme className="fixed bottom-4 right-4 z-50" />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { DesktopNavProps } from "../types";
+import clsx from "clsx";
+import Logo from "../../Logo";
 
-export const DesktopNav = ({ data, handlers }: DesktopNavProps) => {
+export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
   const { isMobile, pathname, activeStates, linkClasses } = data;
   const {
     isIgrejaOpen,
@@ -26,7 +28,11 @@ export const DesktopNav = ({ data, handlers }: DesktopNavProps) => {
   return (
     <>
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center space-x-2">
+      <div className={clsx(className)}>
+        {/* --- Logo --- */}
+        <Link href="/">
+          <Logo className="h-10 w-auto" />
+        </Link>
         {/* --- A Igreja Dropdown --- */}
         <div
           ref={igrejaMenuRef}
@@ -43,7 +49,7 @@ export const DesktopNav = ({ data, handlers }: DesktopNavProps) => {
             A Igreja
           </button>
           {isIgrejaOpen && (
-            <div className="absolute right-0 w-56 dropdown-menu-bg border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+            <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
                 href="/igreja/trilha-reviver"
                 className={
@@ -115,7 +121,7 @@ export const DesktopNav = ({ data, handlers }: DesktopNavProps) => {
             Missões
           </button>
           {isMissoesOpen && (
-            <div className="absolute right-0 w-56 dropdown-menu-bg border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+            <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
                 href="/missoes/celulas"
                 className={
@@ -177,7 +183,7 @@ export const DesktopNav = ({ data, handlers }: DesktopNavProps) => {
             Conteúdo
           </button>
           {isConteudoOpen && (
-            <div className="absolute right-0 w-56 dropdown-menu-bg border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+            <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
                 href="/conteudo/estudo-semanal"
                 className={

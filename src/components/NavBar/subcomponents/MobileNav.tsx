@@ -2,8 +2,10 @@ import Link from "next/link";
 import { MenuIcon, XIcon } from "lucide-react";
 import { MobileNavProps } from "../types";
 import { useRouter } from "next/navigation";
+import Logo from "../../Logo";
+import clsx from "clsx";
 
-export const MobileNav = ({ data, handlers }: MobileNavProps) => {
+export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
   const router = useRouter();
   const { mounted, pathname, activeStates, linkClasses } = data;
   const {
@@ -40,22 +42,32 @@ export const MobileNav = ({ data, handlers }: MobileNavProps) => {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <div className="md:hidden">
-        {!mounted ? (
-          <div className="h-6 w-6" />
-        ) : (
-          <button
-            onClick={() => (isOpen ? handleCloseMenu() : setIsOpen(true))}
-            className="text-foreground focus:outline-none"
-          >
-            {isOpen ? (
-              <XIcon className="h-6 w-6" />
-            ) : (
-              <MenuIcon className="h-6 w-6" />
-            )}
-          </button>
-        )}
+      <div className={clsx(className)}>
+        {/* CENTER: LOGO */}
+        <div className="">
+          <Link href="/">
+            <Logo className={clsx("h-8 w-auto", "mt-1 mb-1")} />
+          </Link>
+        </div>
+
+        {/* RIGHT: HAMBURGER BUTTON */}
+        <div className="absolute right-1 top-1 mt-1 mb-1 flex items-center justify-center">
+          {!mounted ? (
+            // placeholder to prevent layout shift
+            <div className="h-6 w-6" />
+          ) : (
+            <button
+              onClick={() => (isOpen ? handleCloseMenu() : setIsOpen(true))}
+              className="text-foreground focus:outline-none"
+            >
+              {isOpen ? (
+                <XIcon className="h-6 w-6" />
+              ) : (
+                <MenuIcon className="h-6 w-6" />
+              )}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Drawer */}
@@ -68,7 +80,7 @@ export const MobileNav = ({ data, handlers }: MobileNavProps) => {
           <div className="flex-1" onClick={handleCloseMenu} />
 
           <div
-            className={`w-3/4 sm:w-2/5 h-full bg-background border-l shadow-xl p-4 space-y-3 overflow-y-auto ${
+            className={`w-3/4 sm:w-2/5 h-full bg-background border-l border-border shadow-xl p-4 space-y-3 overflow-y-auto ${
               isClosing ? "animate-slide-out" : "animate-slide-in"
             }`}
           >

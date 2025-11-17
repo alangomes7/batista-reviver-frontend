@@ -1,5 +1,5 @@
 import { CarouselHomePage } from "@/components/Carousel/HomePage";
-import ImageWithTextPage from "@/components/Layout/ImageWithTextPage";
+import ImageWithTextPage from "@/components/Layout/ImageSideWithTextPage";
 import MapPageLayout from "@/components/Layout/MapPageLayout";
 
 export default function Home() {

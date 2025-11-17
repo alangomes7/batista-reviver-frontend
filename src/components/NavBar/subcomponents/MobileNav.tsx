@@ -96,7 +96,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
               {isIgrejaOpen && (
                 <div className={submenuClass}>
                   <Link
-                    href="/igreja/trilha-reviver"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/igreja/trilha-reviver"
                         ? activeMenuItemClass
@@ -108,9 +108,9 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   </Link>
 
                   <Link
-                    href="/igreja/quem-somos"
+                    href={navLinksPages.igreja_quem_somos}
                     className={
-                      pathname === "/igreja/quem-somos"
+                      pathname === navLinksPages.igreja_quem_somos
                         ? activeMenuItemClass
                         : menuItemClass
                     }
@@ -120,7 +120,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   </Link>
 
                   <Link
-                    href="/igreja/ministerios"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/igreja/ministerios"
                         ? activeMenuItemClass
@@ -152,7 +152,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   pathname.startsWith("/programacao")
                 )}`}
                 onClick={() => {
-                  router.push("/programacao");
+                  router.push(navLinksPages.not_found);
                   handleCloseMenu();
                 }}
               >
@@ -173,7 +173,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
               {isMissoesOpen && (
                 <div className={submenuClass}>
                   <Link
-                    href="/missoes/celulas"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/missoes/celulas"
                         ? activeMenuItemClass
@@ -185,7 +185,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   </Link>
 
                   <Link
-                    href="/missoes/uma-nova-chance"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/missoes/uma-nova-chance"
                         ? activeMenuItemClass
@@ -197,7 +197,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   </Link>
 
                   <Link
-                    href="/missoes/encontro-com-deus"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/missoes/encontro-com-deus"
                         ? activeMenuItemClass
@@ -217,7 +217,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   pathname.startsWith("/contribuicao")
                 )}`}
                 onClick={() => {
-                  router.push("/contribuicao");
+                  router.push(navLinksPages.not_found);
                   handleCloseMenu();
                 }}
               >
@@ -239,7 +239,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
               {isConteudoOpen && (
                 <div className={submenuClass}>
                   <Link
-                    href="/conteudo/estudo-semanal"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/conteudo/estudo-semanal"
                         ? activeMenuItemClass
@@ -251,7 +251,7 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   </Link>
 
                   <Link
-                    href="/conteudo/midias"
+                    href={navLinksPages.not_found}
                     className={
                       pathname === "/conteudo/midias"
                         ? activeMenuItemClass

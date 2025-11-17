@@ -8,6 +8,7 @@ export const navLinksMenuItem = {
 } as const;
 
 export const navLinksPages = {
+  not_found: "/not-found",
   igreja_trilha_reviver: "/igreja/trilha-reviver",
   igreja_quem_somos: "/igreja/quem-somos",
   igreja_ministerios: "/igreja/ministerios",

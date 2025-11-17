@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-type ImageWithTextPageProps = {
+type ImageSideWithTextPageProps = {
   title: string;
   imageUrl: string;
   imageAlt: string;
@@ -14,14 +14,14 @@ type ImageWithTextPageProps = {
  * A responsive page layout component that displays an image and text content
  * side-by-side on desktop and stacked on mobile.
  */
-export default function ImageWithTextPage({
+export default function ImageSideWithTextPage({
   title,
   imageUrl,
   imageAlt,
   children,
   className,
   reverseOrder = false,
-}: ImageWithTextPageProps) {
+}: ImageSideWithTextPageProps) {
   return (
     <main
       className={cn(

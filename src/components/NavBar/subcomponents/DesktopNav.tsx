@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DesktopNavProps } from "../types";
+import { DesktopNavProps, navLinksPages } from "../types";
 import clsx from "clsx";
 import Logo from "../../Logo";
 
@@ -51,7 +51,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
           {isIgrejaOpen && (
             <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
-                href="/igreja/trilha-reviver"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/igreja/trilha-reviver"
                     ? activeMenuItemClass
@@ -61,9 +61,9 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Trilha Reviver
               </Link>
               <Link
-                href="/igreja/quem-somos"
+                href={navLinksPages.igreja_quem_somos}
                 className={
-                  pathname === "/igreja/quem-somos"
+                  pathname === navLinksPages.igreja_quem_somos
                     ? activeMenuItemClass
                     : menuItemClass
                 }
@@ -71,7 +71,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Quem somos
               </Link>
               <Link
-                href="/igreja/ministerios"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/igreja/ministerios"
                     ? activeMenuItemClass
@@ -81,9 +81,9 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Ministérios
               </Link>
               <Link
-                href="/igreja/visao-fe-e-cruz"
+                href={navLinksPages.igreja_visao}
                 className={
-                  pathname === "/igreja/visao-fe-e-cruz"
+                  pathname === navLinksPages.igreja_visao
                     ? activeMenuItemClass
                     : menuItemClass
                 }
@@ -95,7 +95,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
         </div>
 
         <Link
-          href="/programacao"
+          href={navLinksPages.not_found}
           className={
             pathname.startsWith("/programacao")
               ? activeNavLinkClass
@@ -123,7 +123,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
           {isMissoesOpen && (
             <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
-                href="/missoes/celulas"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/missoes/celulas"
                     ? activeMenuItemClass
@@ -133,7 +133,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Células
               </Link>
               <Link
-                href="/missoes/uma-nova-chance"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/missoes/uma-nova-chance"
                     ? activeMenuItemClass
@@ -143,7 +143,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Uma Nova Chance
               </Link>
               <Link
-                href="/missoes/encontro-com-deus"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/missoes/encontro-com-deus"
                     ? activeMenuItemClass
@@ -157,7 +157,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
         </div>
 
         <Link
-          href="/contribuicao"
+          href={navLinksPages.not_found}
           className={
             pathname.startsWith("/contribuicao")
               ? activeNavLinkClass
@@ -185,7 +185,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
           {isConteudoOpen && (
             <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
-                href="/conteudo/estudo-semanal"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/conteudo/estudo-semanal"
                     ? activeMenuItemClass
@@ -195,7 +195,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Estudo semanal
               </Link>
               <Link
-                href="/conteudo/midias"
+                href={navLinksPages.not_found}
                 className={
                   pathname === "/conteudo/midias"
                     ? activeMenuItemClass

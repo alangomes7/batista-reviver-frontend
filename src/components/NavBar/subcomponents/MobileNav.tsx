@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MenuIcon, XIcon } from "lucide-react";
-import { MobileNavProps } from "../types";
+import { MobileNavProps, navLinksMenuItem, navLinksPages } from "../types";
 import { useRouter } from "next/navigation";
 import Logo from "../../Logo";
 import clsx from "clsx";
@@ -132,9 +132,9 @@ export const MobileNav = ({ data, handlers, className }: MobileNavProps) => {
                   </Link>
 
                   <Link
-                    href="/igreja/visao-fe-cruz"
+                    href={navLinksPages.igreja_visao}
                     className={
-                      pathname === "/igreja/visao-fe-cruz"
+                      pathname === navLinksPages.igreja_visao
                         ? activeMenuItemClass
                         : menuItemClass
                     }

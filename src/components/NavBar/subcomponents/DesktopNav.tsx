@@ -81,9 +81,9 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
                 Ministérios
               </Link>
               <Link
-                href="/igreja/visao-fe-cruz"
+                href="/igreja/visao-fe-e-cruz"
                 className={
-                  pathname === "/igreja/visao-fe-cruz"
+                  pathname === "/igreja/visao-fe-e-cruz"
                     ? activeMenuItemClass
                     : menuItemClass
                 }

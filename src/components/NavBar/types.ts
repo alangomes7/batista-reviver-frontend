@@ -2,6 +2,18 @@ import { RefObject } from "react";
 
 // Props for the main Navbar component (currently none)
 export type NavBarProps = Record<string, never>;
+
+export const navLinksMenuItem = {
+  igreja: "/igreja",
+} as const;
+
+export const navLinksPages = {
+  igreja_trilha_reviver: "/igreja/trilha-reviver",
+  igreja_quem_somos: "/igreja/quem-somos",
+  igreja_ministerios: "/igreja/ministerios",
+  igreja_visao: "/igreja/visao-fe-e-cruz",
+} as const;
+
 // --- HOOK TYPES ---
 
 // Return type for our data hook

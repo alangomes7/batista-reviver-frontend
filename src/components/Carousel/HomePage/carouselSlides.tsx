@@ -9,7 +9,7 @@ import Link from "next/link";
  */
 export function ImageSlideMobile({ src, alt, href }: SlideItem) {
   return (
-    <Card className="rounded-none border-none p-0 gap-0">
+    <Card className="border-none p-0 gap-0">
       <CardContent className="p-0 aspect-4/3 overflow-hidden">
         <div className="relative w-full h-full">
           <Link href={href}>
@@ -32,7 +32,7 @@ export function ImageSlideMobile({ src, alt, href }: SlideItem) {
  */
 export function ImageSlideDesktop({ src, alt, href }: SlideItem) {
   return (
-    <Card className="rounded-none border-none p-0 gap-0">
+    <Card className="border-none p-0 gap-0">
       <CardContent className="p-0 aspect-[2.35/1] overflow-hidden">
         <div className="relative w-full h-full">
           <Link href={href}>

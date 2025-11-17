@@ -43,9 +43,25 @@ export function SafeMarkdown({ markdown, className }: SafeMarkdownProps) {
               </div>
             );
           },
-          img: ({ node, ...props }) => (
-            <Image {...props} className="mx-auto rounded" />
-          ),
+          img: ({ src, alt }) => {
+            if (!src) {
+              return null;
+            }
+
+            if (typeof src === "string") {
+              return (
+                <div className="relative w-full aspect-video mx-auto my-4 rounded overflow-hidden">
+                  <Image
+                    src={src}
+                    alt={alt || ""}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              );
+            }
+            return null;
+          },
         }}
       >
         {markdown}

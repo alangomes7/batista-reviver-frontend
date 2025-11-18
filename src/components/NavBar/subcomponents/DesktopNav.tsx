@@ -49,7 +49,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
             A Igreja
           </button>
           {isIgrejaOpen && (
-            <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+            <div className="absolute left-1/2 -translate-x-1/2 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
                 href={navLinksPages.not_found}
                 className={
@@ -121,7 +121,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
             Missões
           </button>
           {isMissoesOpen && (
-            <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+            <div className="absolute left-1/2 -translate-x-1/2 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
                 href={navLinksPages.not_found}
                 className={
@@ -183,7 +183,7 @@ export const DesktopNav = ({ data, handlers, className }: DesktopNavProps) => {
             Conteúdo
           </button>
           {isConteudoOpen && (
-            <div className="absolute right-0 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
+            <div className="absolute left-1/2 -translate-x-1/2 w-56 bg-popover text-popover-foreground border border-border rounded-md shadow-lg py-1 p-1 z-50 animate-dropdown-in">
               <Link
                 href={navLinksPages.not_found}
                 className={

@@ -5,13 +5,12 @@ import { ReactNode } from 'react';
 interface HeroBannerProps {
   imageSrc: string;
   imageAlt?: string;
-  
+
   title: string;
   subtitle?: string;
   description?: string | ReactNode;
-  
-  
-  className?: string; 
+
+  className?: string;
   overlayOpacity?: string;
 }
 
@@ -22,15 +21,14 @@ export default function HeroBanner({
   subtitle,
   description,
   className,
-  overlayOpacity = 'bg-black/60',
+  overlayOpacity = 'bg-black/0.1',
 }: HeroBannerProps) {
   return (
     <section
       className={clsx(
         'relative w-full flex items-center justify-center overflow-hidden',
         'border-b-4 border-b-muted-foreground',
-        // Default height if no className is provided, otherwise merge/override
-        className || 'h-[85vh] min-h-[600px]'
+        className || 'h-[85vh] min-h-150',
       )}
     >
       {/* Background Image Wrapper */}
@@ -47,10 +45,19 @@ export default function HeroBanner({
         <div className={clsx('absolute inset-0', overlayOpacity)} />
       </div>
 
+      {/* ⭐ Black Radial Gradient Highlight ⭐ */}
+      <div
+        className='
+          absolute inset-0 
+          pointer-events-none 
+          bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.6),transparent_80%)]
+        '
+      />
+
       {/* Content Container */}
       <div className='relative z-10 container mx-auto px-4 text-center'>
         <h1 className='text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in'>
-          {title} 
+          {title}
           {subtitle && (
             <>
               <br />

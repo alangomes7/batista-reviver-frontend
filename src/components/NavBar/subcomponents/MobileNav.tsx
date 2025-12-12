@@ -26,14 +26,14 @@ export const MobileNav = ({
 
   return (
     <div
-      className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm flex justify-end ${
+      className={`fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex justify-end ${
         store.isClosing ? 'animate-fade-out' : 'animate-fade-in'
       }`}
     >
       <div className='flex-1' onClick={onClose} />
 
       <div
-        className={`w-3/4 sm:w-2/5 h-full bg-background border-l border-border shadow-xl p-4 space-y-2 overflow-y-auto ${
+        className={`w-3/4 sm:w-2/5 h-full bg-background text-foreground border-l border-border shadow-xl p-4 space-y-2 overflow-y-auto ${
           store.isClosing ? 'animate-slide-out' : 'animate-slide-in'
         }`}
       >

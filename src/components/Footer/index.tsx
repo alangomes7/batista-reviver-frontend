@@ -72,7 +72,7 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        'w-full bg-background border-border border-t border-t-muted-foreground/10 mt-16',
+        'w-full bg-background border-border border-t border-t-muted-foreground/10',
       )}
     >
       <div className='container mx-auto max-w-6xl px-4 py-12'>

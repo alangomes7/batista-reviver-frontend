@@ -125,13 +125,13 @@ export const NAV_LINKS: NavLink[] = [
 export const STYLES = {
   // Base Links
   navLink:
-    'text-sm font-medium text-foreground/80 hover:text-foreground transition-all px-3 py-2 rounded-md hover:bg-foreground/5 flex items-center gap-1',
+    'text-sm font-medium white/80 hover:text-foreground transition-all px-3 py-2 rounded-md hover:bg-foreground/5 flex items-center gap-1',
   activeNavLink:
     'text-sm font-medium text-primary font-semibold transition-all bg-primary/10 px-3 py-2 rounded-md flex items-center gap-1',
 
   // Mobile Items
   menuItem:
-    'block px-4 py-3 text-sm text-foreground hover:bg-foreground/5 rounded-md w-full text-left flex justify-between items-center',
+    'block px-4 py-3 text-sm white hover:bg-foreground/5 rounded-md w-full text-left flex justify-between items-center',
   activeMenuItem:
     'block px-4 py-3 text-sm text-primary bg-primary/10 rounded-md w-full text-left flex justify-between items-center',
 

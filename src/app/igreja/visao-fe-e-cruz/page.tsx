@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import VisaoFeECruzClient from './VisaoFeECruzClient';
+import HeroBanner from '@/components/Hero/HeroBanner';
+import { SafeMarkdown } from '@/components/Markdown/SafeMarkdown';
 
 export default function VisaoFeECruzPage() {
   let markdownString = '';
@@ -21,6 +23,17 @@ export default function VisaoFeECruzPage() {
     markdownString = 'Error: Could not load content.';
   }
 
-  const img = '/images/batismo.jpg';
-  return <VisaoFeECruzClient markdown={markdownString} imgUrl={img} />;
+  return (
+    <>
+      <HeroBanner
+        imageSrc={'/images/batismo.jpg'}
+        title='Visão, fé e cruz'
+        subtitle='conheça os nossos pilares'
+      />
+      <VisaoFeECruzClient
+        markdown={<SafeMarkdown markdown={markdownString} />}
+      />
+      ;
+    </>
+  );
 }

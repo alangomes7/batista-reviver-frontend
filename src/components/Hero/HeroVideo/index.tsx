@@ -1,37 +1,80 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-export default function HeroVideo() {
+interface HeroVideoProps {
+  /** The main heading */
+  title: string | ReactNode;
+  
+  /** The subtitle text */
+  subtitle?: string | ReactNode;
+  
+  /** The Embed URL for the iframe */
+  videoSrc: string;
+  
+  /** Accessibility title for the iframe */
+  videoTitle?: string;
+  
+  /** * The content block on the side (Text, Buttons, etc).
+   * Using children allows for rich text and custom buttons.
+   */
+  children: ReactNode;
+  
+  /** Optional: Swaps the order to Text-Left / Video-Right */
+  reverse?: boolean;
+  
+  /** Optional: Override outer section classes */
+  className?: string;
+}
+
+export default function HeroVideo({
+  title,
+  subtitle,
+  videoSrc,
+  videoTitle = 'Video player',
+  children,
+  reverse = false,
+  className,
+}: HeroVideoProps) {
   return (
     <section
       className={clsx(
         'w-full py-16 md:py-24',
         'bg-background text-foreground',
         'border-b border-border',
+        className
       )}
     >
       <div className='container mx-auto px-4'>
+        {/* Header Section */}
         <div className='text-center mb-12 md:mb-16'>
           <h2 className='text-3xl md:text-5xl font-bold text-primary mb-4 animate-fade-in'>
-            Nossa Missão
+            {title}
           </h2>
-          <p
-            className='text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-in'
-            style={{ animationDelay: '0.1s' }}
-          >
-            2024 Ano de Reviver
-          </p>
+          {subtitle && (
+            <div
+              className='text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-in'
+              style={{ animationDelay: '0.1s' }}
+            >
+              {subtitle}
+            </div>
+          )}
         </div>
 
+        {/* Content Grid */}
         <div className='grid md:grid-cols-2 gap-8 lg:gap-12 items-center'>
+          {/* Video Column */}
           <div
-            className='w-full animate-fade-in'
+            className={clsx(
+              'w-full animate-fade-in',
+              reverse ? 'md:order-2' : 'md:order-1'
+            )}
             style={{ animationDelay: '0.2s' }}
           >
             <div className='relative w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-border'>
               <iframe
                 className='absolute top-0 left-0 w-full h-full'
-                src='https://www.youtube.com/embed/L3w3e0ExxcY'
-                title='YouTube video player'
+                src={videoSrc}
+                title={videoTitle}
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                 referrerPolicy='strict-origin-when-cross-origin'
                 allowFullScreen
@@ -39,24 +82,16 @@ export default function HeroVideo() {
             </div>
           </div>
 
-          <div className='animate-slide-in' style={{ animationDelay: '0.3s' }}>
+          {/* Text/Children Column */}
+          <div
+            className={clsx(
+              'animate-slide-in',
+              reverse ? 'md:order-1' : 'md:order-2'
+            )}
+            style={{ animationDelay: '0.3s' }}
+          >
             <div className='prose prose-lg text-foreground'>
-              <p className='text-lg md:text-xl leading-relaxed text-justify md:text-left'>
-                Somos uma comunidade dedicada a transformar vidas através do
-                amor e da palavra. Acreditamos que cada pessoa tem um propósito
-                único e divino. Neste vídeo, compartilhamos testemunhos reais de
-                superação, fé e renovo espiritual que marcam a trajetória da
-                <span className='font-bold text-primary ml-1'>
-                  Batista Reviver
-                </span>
-                . Junte-se a nós nesta jornada de descoberta e crescimento
-                espiritual, onde o passado não define o seu futuro, mas serve
-                como alicerce para uma nova história escrita por Deus.
-              </p>
-
-              <div className='mt-8 flex justify-center md:justify-start'>
-                <button className='btn btn-primary'>Saiba Mais</button>
-              </div>
+              {children}
             </div>
           </div>
         </div>

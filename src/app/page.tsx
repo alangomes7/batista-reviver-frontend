@@ -5,8 +5,35 @@ import HeroVideo from '@/components/Hero/HeroVideo';
 export default function Home() {
   return (
     <>
-      <HeroBanner />
-      <HeroVideo />
+      <HeroBanner
+      imageSrc="/homePage/hero_banner.jpg"
+      title="Batista Reviver"
+      subtitle="UMA NOVA CHANCE"
+      description="Uma igreja Batista firmada na palavra de Deus e no poder do Espírito Santo"
+    />
+      <HeroVideo
+      title="Nossa Missão"
+      subtitle="2024 Ano de Reviver"
+      videoSrc="https://www.youtube.com/embed/L3w3e0ExxcY"
+      videoTitle="Vídeo Institucional Batista Reviver"
+    >
+      {/* Rich Text Content */}
+      <p className='text-lg md:text-xl leading-relaxed text-justify md:text-left'>
+        Somos uma comunidade dedicada a transformar vidas através do amor e da
+        palavra. Acreditamos que cada pessoa tem um propósito único e divino.
+        Neste vídeo, compartilhamos testemunhos reais de superação, fé e renovo
+        espiritual que marcam a trajetória da
+        <span className='font-bold text-primary ml-1'>Batista Reviver</span>.
+        Junte-se a nós nesta jornada de descoberta e crescimento espiritual,
+        onde o passado não define o seu futuro, mas serve como alicerce para uma
+        nova história escrita por Deus.
+      </p>
+
+      {/* Button / Actions */}
+      <div className='mt-8 flex justify-center md:justify-start'>
+        <button className='btn btn-primary'>Saiba Mais</button>
+      </div>
+    </HeroVideo>
       <HeroMap
         title='Venha nos visitar'
         description='Nós estamos localizados no coração da cidade de Tanguá, na região metropolitana do estado do Rio de Janeiro. Venha nos fazer uma visita.'

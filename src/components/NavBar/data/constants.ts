@@ -2,6 +2,7 @@ export interface NavLink {
   label: string;
   href?: string;
   external?: boolean;
+  landing?: boolean;
   subLinks?: NavLink[];
 }
 
@@ -14,21 +15,25 @@ export const NAV_LINKS: NavLink[] = [
         href: '/igreja/trilha_reviver',
         label: 'Trilha Reviver',
         external: false,
+        landing: true,
       },
       {
         href: '/igreja/quem_somos',
         label: 'Quem somos',
         external: false,
+        landing: true,
       },
       {
         href: '/igreja/ministerios',
         label: 'Ministérios',
         external: false,
+        landing: true,
       },
       {
         href: '/igreja/visao-fe-e-cruz',
         label: 'Visão, fé e cruz',
         external: false,
+        landing: true,
       },
     ],
   },
@@ -41,6 +46,7 @@ export const NAV_LINKS: NavLink[] = [
         href: '/programacao',
         label: 'Programação',
         external: false,
+        landing: true,
       },
     ],
   },
@@ -53,16 +59,19 @@ export const NAV_LINKS: NavLink[] = [
         href: '/missoes/celulas',
         label: 'Células',
         external: false,
+        landing: true,
       },
       {
         href: '/missoes/nova_chance',
         label: 'Uma Nova Chance',
         external: false,
+        landing: true,
       },
       {
         href: '/missoes/encontro_deus',
         label: 'Encontro com Deus',
         external: false,
+        landing: true,
       },
     ],
   },
@@ -75,6 +84,7 @@ export const NAV_LINKS: NavLink[] = [
         href: '/contribuicao',
         label: 'Contribuição',
         external: false,
+        landing: true,
       },
     ],
   },
@@ -87,11 +97,13 @@ export const NAV_LINKS: NavLink[] = [
         href: '/conteudo/estudo_semanal',
         label: 'Estudo semanal',
         external: false,
+        landing: true,
       },
       {
         href: '/conteudo/midias',
         label: 'Mídias',
         external: false,
+        landing: true,
       },
     ],
   },
@@ -104,6 +116,7 @@ export const NAV_LINKS: NavLink[] = [
         href: 'https://store.igbatistareviver.com.br/',
         label: 'Loja Use Reviver',
         external: true,
+        landing: false,
       },
     ],
   },

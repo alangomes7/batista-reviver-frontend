@@ -3,11 +3,15 @@
 import { usePathname } from 'next/navigation';
 import { MenuIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
+import { useMemo } from 'react'; // Adicionado useMemo
 
 // Hooks
 import { useNavSession } from './hooks/data/useNavSession';
 import { useMenuHandler } from './hooks/handler/useMenuHandler';
 import { useNavUiStore } from './stores/useNavUiStore';
+
+// Data
+import { NAV_LINKS, NavLink } from './data/constants'; // Importação das constantes
 
 // Components
 import { DesktopNav } from './subcomponents/DesktopNav';
@@ -19,7 +23,29 @@ import Link from 'next/link';
 
 export default function NavBar() {
   const pathname = usePathname();
-  const isLanding = pathname === '/';
+
+  // Lógica dinâmica para determinar se é uma Landing Page baseada nos dados
+  const isLanding = useMemo(() => {
+    // A home sempre é considerada landing page
+    if (pathname === '/') return true;
+
+    // Função auxiliar para verificar recursivamente a propriedade 'landing'
+    const checkLanding = (links: NavLink[]): boolean => {
+      return links.some(link => {
+        // Verifica se o link atual corresponde à rota e tem landing: true
+        if (link.href === pathname && link.landing) return true;
+
+        // Se tiver subLinks, verifica recursivamente
+        if (link.subLinks && link.subLinks.length > 0) {
+          return checkLanding(link.subLinks);
+        }
+
+        return false;
+      });
+    };
+
+    return checkLanding(NAV_LINKS);
+  }, [pathname]);
 
   const { isOpen, setIsOpen, mounted } = useNavUiStore();
   const { session, logout } = useNavSession();

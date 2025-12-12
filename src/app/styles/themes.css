@@ -1,0 +1,69 @@
+/* GLOBAL & SHARED VARIABLES
+  All variables that are *defined identically* for both themes are placed here.
+*/
+:root {
+  /* ---- Shared Derived Variables ---- */
+  --brand-secondary-lightest: color-mix(in srgb, var(--brand-main) 80%, white);
+
+  /* Semantic Variables */
+  --primary: var(--brand-main);
+  --primary-light: var(--brand-secondary-lightest);
+  --primary-dark: var(--brand-secondary-dark);
+  --text-over-primary: #ffffff;
+}
+
+/* LIGHT THEME */
+:root[data-theme='light'] {
+  /* ---- Base Colors ---- */
+  --brand-main: #f25749;
+  --base-dark: #0d0d0d;
+
+  /* ---- Derived Colors ---- */
+  --brand-secondary-light: color-mix(in srgb, var(--brand-main) 60%, white);
+  --brand-secondary-dark: color-mix(in srgb, var(--brand-main) 40%, black);
+
+  /* ---- Semantic Colors ---- */
+  --background: #ffffff;
+  --foreground: var(--base-dark);
+  --border: #e5e7eb;
+  --card-background: #ffffff;
+  --muted-foreground: #6b7280;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: var(--brand-main);
+  --info: #3b82f6;
+
+  --disabled: #e5e7eb;
+  --text-disabled: #9ca3af;
+  --link-color: var(--primary);
+  --link-hover: var(--primary-dark);
+}
+
+/* DARK THEME */
+:root[data-theme='dark'] {
+  /* ---- Base Colors ---- */
+  --brand-main: #3190a5;
+
+  /* ---- Derived Colors ---- */
+  --brand-secondary-light: color-mix(in srgb, var(--brand-main) 65%, white);
+  --brand-secondary-dark: color-mix(in srgb, var(--brand-main) 45%, black);
+  --brand-accent: color-mix(in srgb, var(--brand-main) 55%, #05a678);
+
+  /* ---- Semantic Colors ---- */
+  --background: #111827;
+  --foreground: #f9fafb;
+  --border: #374151;
+  --card-background: #1f2937;
+  --muted-foreground: #9ca3af;
+
+  --success: var(--brand-accent);
+  --warning: #fbbf24;
+  --error: #f87171;
+  --info: var(--brand-secondary-dark);
+
+  --disabled: #374151;
+  --text-disabled: #6b7280;
+  --link-color: var(--primary-light);
+  --link-hover: var(--brand-secondary-light);
+}

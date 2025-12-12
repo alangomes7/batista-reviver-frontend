@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
-import { AnimationProps } from "../types";
-import AnimatedJson from "../../AnimatedJson";
+import AnimatedJson from '@/components/AnimatedJson';
+import clsx from 'clsx';
+import { AnimationProps } from '../types';
 
 export default function SpinLoaderAnimation({
-  className = "",
+  className = '',
 }: AnimationProps) {
   return (
     <AnimatedJson
-      path="/animations/Spin-Loading-colors.json"
+      path='/animations/Circle-Loading.json'
       className={clsx(className)}
     />
   );

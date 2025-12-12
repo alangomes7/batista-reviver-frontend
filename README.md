@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+POST http://localhost:8080/authentication/login { "email":
+"admin@studysystem.com", "password": "admin123" }
 
-## Getting Started
+---
 
-First, run the development server:
+POST URL: http://localhost:8080/userApp { "name": "Regular Student", "email":
+"student@test.com", "password": "password123" }
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+POST URL: http://localhost:8080/authentication/login { "email":
+"student@test.com", "password": "password123" }
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Method: DELETE URL: http://localhost:8080/students/2 Auth: Update the Bearer
+Token with the User Token from Step E. Result: 403 Forbidden { "status": 403,
+"error": "FORBIDDEN", "message": "Você não tem permissão para acessar este
+recurso." }
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+1. Tentar remover um aluno sem estar logado. No Postman, deverá ocorrer o erro
+   401 - UNAUTHORIZED e no react o usuário deverá ser redirecionado para a tela
+   de login que deverá exibir a mensagem "Necessário estar autenticado para
+   acessar este recurso."
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Method: DELETE URL: http://localhost:8080/students/2 Auth: Update the Bearer
+Token with the User Token from Step E. Result: 401 Forbidden { "status": 401,
+"error": "UNAUTHORIZED", "message": "Necessário estar autenticado para acessar
+este recurso" }
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Tentar remover um aluno após se logar com um usuário que possui o perfil
+   USER. No Postman, deverá ocorrer o erro 403 - FORBIDDEN e no react o usuário
+   deverá ser redirecionado para a tela de login que deverá exibir a mensagem
+   "Você não tem permissão para acessar este recurso."
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#
+
+Method: DELETE URL: http://localhost:8080/students/2 Auth: Update the Bearer
+Token with the User Token from Step E. Result: 403 Forbidden { "status": 403,
+"error": "FORBIDDEN ", "message": "Você não tem permissão para acessar este
+recurso." }
+
+---
+
+3. Tentar remover um aluno após se logar com um usuário que possui o perfil
+   ADMIN. No Postman, o código de retorno deverá ser 200 OK e no react o usuário
+   deverá ser removido.
+
+#
+
+Method: DELETE URL: http://localhost:8080/students/2 Auth: Update the Bearer
+Token with the User Token from Step E. Result: 200 OK { "status": 200, "error":
+"", "message": "" }

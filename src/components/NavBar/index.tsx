@@ -1,52 +1,101 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
-import { useNavbarData } from "./hooks/data/useNavbarData";
-import { useNavbarMenu } from "./hooks/handle/useNavbarMenu";
-import { DesktopNav } from "./subcomponents/DesktopNav";
-import { MobileNav } from "./subcomponents/MobileNav";
-import { NavBarProps } from "./types";
+import { usePathname } from 'next/navigation';
+import { MenuIcon, XIcon } from 'lucide-react';
+import clsx from 'clsx';
 
-export default function NavBar({}: NavBarProps) {
-  const data = useNavbarData();
-  const handlers = useNavbarMenu(data.mounted);
-  const { navRef } = handlers;
+// Hooks
+import { useNavSession } from './hooks/data/useNavSession';
+import { useMenuHandler } from './hooks/handler/useMenuHandler';
+import { useNavUiStore } from './stores/useNavUiStore';
+
+// Components
+import { DesktopNav } from './subcomponents/DesktopNav';
+import { MobileNav } from './subcomponents/MobileNav';
+import { AuthButtons } from './subcomponents/AuthButtons';
+import ButtonTheme from '../ButtonTheme';
+import Logo from '../Logo';
+import Link from 'next/link';
+
+export default function NavBar() {
+  const pathname = usePathname();
+  const isLanding = pathname === '/';
+
+  const { isOpen, setIsOpen, mounted } = useNavUiStore();
+  const { session, logout } = useNavSession();
+  const { handleCloseMenu, refs } = useMenuHandler();
 
   return (
-    <nav
-      ref={navRef}
-      className={clsx("w-full z-50", "relative md:fixed md:top-0")}
-    >
-      {/* -------- DESKTOP -------- */}
-      <div className="md:flex justify-end">
-        <DesktopNav
-          data={data}
-          handlers={handlers}
-          className={clsx(
-            "hidden md:flex",
-            "right-0",
-            "bg-background/80 dark:bg-background/30 backdrop-blur-xl",
-            "shadow-xl border border-border/40",
-            "px-6 py-3",
-            "rounded-l-4xl rounded-r-none",
-            "space-x-2"
-          )}
-        />
-      </div>
+    <>
+      <nav
+        ref={refs.navRef}
+        className={clsx(
+          'z-50 transition-all duration-300 w-full',
+          isLanding
+            ? 'fixed top-0 left-0 bg-linear-to-b from-black/60 to-transparent'
+            : 'sticky top-0 bg-background border-b border-border',
+        )}
+      >
+        {/* Added 'relative' here so the absolute child positions relative to this container */}
+        <div className='container relative mx-auto min-h-[72px] px-4 flex items-center justify-between'>
+          {/* LEFT — MOBILE MENU BUTTON */}
+          <div className='flex md:hidden'>
+            {!mounted ? (
+              <div className='h-6 w-6' />
+            ) : (
+              <button
+                onClick={() => (isOpen ? handleCloseMenu() : setIsOpen(true))}
+                className={clsx(
+                  'focus:outline-none transition-colors',
+                  isLanding ? 'text-white' : 'text-foreground',
+                )}
+              >
+                {isOpen ? (
+                  <XIcon className='h-6 w-6' />
+                ) : (
+                  <MenuIcon className='h-6 w-6' />
+                )}
+              </button>
+            )}
+          </div>
 
-      {/* -------- MOBILE -------- */}
-      <div className="md:hidden">
+          {/* CENTER — DESKTOP LOGO + NAV */}
+          {/* Changed: Used absolute positioning to center this block perfectly */}
+          <div className='hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8'>
+            <Link href={'/'}>
+              <Logo className='h-8 w-auto md:h-9' />
+            </Link>
+            <div
+              className={clsx(
+                'flex items-center gap-6 whitespace-nowrap',
+                isLanding ? 'text-white/90' : 'text-foreground',
+              )}
+            >
+              <DesktopNav session={session} refs={refs} />
+            </div>
+          </div>
+
+          {/* RIGHT — THEME + AUTH (DESKTOP ONLY) */}
+          {/* Because the parent is justify-between, this naturally sticks to the right */}
+          <div className='hidden md:flex items-center gap-4 ml-auto'>
+            <ButtonTheme />
+            <AuthButtons session={session} onLogout={logout} />
+          </div>
+        </div>
+
+        {/* MOBILE LEFT DRAWER */}
         <MobileNav
-          data={data}
-          handlers={handlers}
-          className={clsx(
-            "h-10",
-            "flex justify-center items-center",
-            "bg-background border-b border-border",
-            "shadow-sm"
-          )}
+          session={session}
+          refs={refs}
+          onClose={handleCloseMenu}
+          onLogout={logout}
         />
+      </nav>
+
+      {/* FLOATING THEME BUTTON (MOBILE ONLY) */}
+      <div className='block md:hidden fixed bottom-8 right-8 z-50'>
+        <ButtonTheme />
       </div>
-    </nav>
+    </>
   );
 }

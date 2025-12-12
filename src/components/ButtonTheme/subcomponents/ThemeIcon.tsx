@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { MoonIcon, SunIcon, PaletteIcon } from "lucide-react";
-import { Theme } from "../types";
+import { Theme } from '@/components/ButtonTheme/types';
+import { MoonIcon, SunIcon } from 'lucide-react';
 
 export interface ThemeIconProps {
   /** Current theme used to decide which icon to show */
@@ -9,20 +9,12 @@ export interface ThemeIconProps {
 }
 
 /**
- * Displays an icon corresponding to the current theme:
- * - 'root' (default colored theme): SunIcon
- * - 'light' (black & white light theme): MoonIcon
- * - 'dark' (brand-tinted dark theme): PaletteIcon
+ * Displays a moon icon for light theme, and a sun icon for dark theme.
  */
 export function ThemeIcon({ theme }: ThemeIconProps) {
-  if (theme === "light") {
-    return <MoonIcon className="h-5 w-5" />;
-  }
-
-  if (theme === "dark") {
-    return <PaletteIcon className="h-5 w-5" />;
-  }
-
-  // Default to 'root' (colored) icon
-  return <SunIcon className="h-5 w-5" />;
+  return theme === 'light' ? (
+    <MoonIcon className='h-5 w-5' />
+  ) : (
+    <SunIcon className='h-5 w-5' />
+  );
 }

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import clsx from "clsx";
+import { ReactNode } from 'react';
+import clsx from 'clsx';
 
 interface ErrorLayoutProps {
   title: string;
@@ -10,7 +10,7 @@ interface ErrorLayoutProps {
   actions?: ReactNode;
   animation?: ReactNode;
   animationSize?: { width: number; height: number };
-  tone?: "default" | "destructive";
+  tone?: 'default' | 'destructive';
 }
 
 export default function ErrorLayout({
@@ -20,14 +20,14 @@ export default function ErrorLayout({
   actions,
   animation,
   animationSize,
-  tone = "default",
+  tone = 'default',
 }: ErrorLayoutProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4 text-foreground">
-      <div className="w-full max-w-4xl p-12 rounded-xl shadow-xl border border-border bg-card text-card-foreground text-center">
+    <div className='min-h-screen flex items-center justify-center bg-background p-4'>
+      <div className='w-full max-w-4xl p-12 rounded-xl shadow-xl border bg-card-background text-center'>
         {animationSize && (
           <div
-            className="mx-auto mb-6 flex items-center justify-center"
+            className='mx-auto mb-6 flex items-center justify-center'
             style={{
               width: animationSize.width,
               height: animationSize.height,
@@ -39,23 +39,21 @@ export default function ErrorLayout({
 
         <h1
           className={clsx(
-            "text-6xl mb-4 font-extrabold",
-            tone === "destructive" ? "text-destructive" : "text-primary"
+            'text-6xl mb-4 font-extrabold',
+            tone === 'destructive' ? 'text-error' : 'text-primary',
           )}
         >
           {title}
         </h1>
 
-        <p className="text-foreground/80 text-lg max-w-xl mx-auto">
+        <p className='text-foreground/80 text-lg max-w-xl mx-auto'>
           {subtitle}
 
           {message && (
             <span
               className={clsx(
-                "block text-sm mt-2",
-                tone === "destructive"
-                  ? "text-destructive"
-                  : "text-muted-foreground"
+                'block text-sm mt-2',
+                tone === 'destructive' ? 'text-error' : 'text-muted-foreground',
               )}
             >
               {message}
@@ -64,7 +62,7 @@ export default function ErrorLayout({
         </p>
 
         {actions && (
-          <div className="flex gap-4 mt-8 justify-center">{actions}</div>
+          <div className='flex gap-4 mt-8 justify-center'>{actions}</div>
         )}
       </div>
     </div>

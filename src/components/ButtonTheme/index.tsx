@@ -1,16 +1,15 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
-import { useThemeHandlers } from "./hooks/handlers/useThemeHandlers";
-import { ThemeIcon } from "./subcomponents/ThemeIcon";
-import { useTheme } from "@/context/ThemeContext";
+import { useThemeData } from './hooks/data/useThemeData';
+import { useThemeHandlers } from './hooks/handlers/useThemeHandlers';
+import { ThemeIcon } from './subcomponents/ThemeIcon';
 
-type ButtonThemeProps = {
-  className?: string;
-};
-
-export default function ButtonTheme({ className = "" }: ButtonThemeProps) {
-  const { theme, setTheme, mounted } = useTheme();
+/**
+ * Button to toggle between light and dark themes.
+ * Persists theme in localStorage and updates the document root attribute.
+ */
+export default function ButtonTheme() {
+  const { theme, setTheme, mounted } = useThemeData();
   const { handleThemeSwitch } = useThemeHandlers(setTheme);
 
   const buttonClasses = `
@@ -22,12 +21,8 @@ export default function ButtonTheme({ className = "" }: ButtonThemeProps) {
 
   if (!mounted) {
     return (
-      <button
-        aria-label="Toggle theme"
-        className={clsx(buttonClasses, className)}
-        disabled
-      >
-        <ThemeIcon theme="root" />
+      <button aria-label='Toggle theme' className={buttonClasses} disabled>
+        <ThemeIcon theme='light' />
       </button>
     );
   }
@@ -35,10 +30,13 @@ export default function ButtonTheme({ className = "" }: ButtonThemeProps) {
   return (
     <button
       onClick={handleThemeSwitch}
-      aria-label="Toggle theme"
-      className={clsx(buttonClasses, className)}
+      aria-label='Toggle theme'
+      className={buttonClasses}
     >
       <ThemeIcon theme={theme} />
     </button>
   );
 }
+
+export * from './hooks/data/useThemeData';
+export * from './types';

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import clsx from "clsx";
-import ErrorLayout from "../components/ErrorLayout";
-import { ErrorAnimation } from "../components/Animations";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
+import { ErrorAnimation } from '@/components/Animations';
+import ErrorLayout from '@/components/ErrorLayout';
 
 interface ErrorPageProps {
   error: Error & { digest?: string };
@@ -15,30 +15,32 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
   const router = useRouter();
 
   useEffect(() => {
-    console.error("Application error:", error);
+    console.error('Application error:', error);
   }, [error]);
 
   return (
     <>
       <title>Something went wrong</title>
       <ErrorLayout
-        title="Oops!"
-        subtitle="Something went wrong while loading this page."
-        message={"Error: " + error.message || "Unknown error occurred."}
+        title='Oops!'
+        subtitle='Something went wrong while loading this page.'
+        message={
+          error.message ? `Error: ${error.message}` : 'Unknown error occurred.'
+        }
         animation={<ErrorAnimation />}
         animationSize={{ width: 256, height: 256 }}
-        tone="destructive"
+        tone='destructive'
         actions={
           <>
             <button
               onClick={reset}
-              className={clsx("btn", "btn-primary", "inline-block")}
+              className={clsx('btn', 'btn-primary', 'inline-block')}
             >
               Try again
             </button>
             <button
-              onClick={() => router.push("/")}
-              className={clsx("btn", "btn-outline", "inline-block")}
+              onClick={() => router.push('/')}
+              className={clsx('btn', 'btn-outline', 'inline-block')}
             >
               Go Home
             </button>

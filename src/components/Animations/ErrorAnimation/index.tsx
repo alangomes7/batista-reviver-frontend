@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
-import { AnimationProps } from "../types";
-import AnimatedJson from "../../AnimatedJson";
+import AnimatedJson from '@/components/AnimatedJson';
+import clsx from 'clsx';
+import { AnimationProps } from '../types';
 
-export default function ErrorAnimation({ className = "" }: AnimationProps) {
+export default function ErrorAnimation({ className = '' }: AnimationProps) {
   return (
     <AnimatedJson
-      path="/animations/Error-animation.json"
+      path='/animations/Error-animation.json'
       className={clsx(className)}
     />
   );

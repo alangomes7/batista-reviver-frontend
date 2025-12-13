@@ -124,7 +124,6 @@ export const DesktopNav = ({ session, refs, logout }: DesktopNavProps) => {
         {/* RIGHT — THEME + AUTH */}
         <div className='flex items-center gap-4 ml-auto'>
           <ButtonTheme />
-          <AuthButtons session={session} onLogout={logout} />
         </div>
       </div>
     </nav>

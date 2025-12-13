@@ -1,4 +1,3 @@
-import HeroBanner from '@/components/Hero/HeroBanner';
 import HeroCarousel from '@/components/Hero/HeroCarousel';
 import HeroMap from '@/components/Hero/HeroMap';
 import HeroVideo from '@/components/Hero/HeroVideo';

@@ -43,49 +43,34 @@ const ArrowRightIcon = () => (
 
 interface CardItem {
   id: number;
-
   imageSrc: string;
-
   title: string | ReactNode;
-
   subtitle?: string | ReactNode;
-
   description: string | ReactNode;
-
   href: string;
 }
 
-interface VideoCarouselProps {
+interface InfiniteVideoCardListProps {
   slides: CardItem[];
-
   className?: string;
-
   cardClassName?: string;
-
   title?: string | ReactNode;
 }
 
 export default function InfiniteVideoCardList({
   slides,
-
   className,
-
   cardClassName,
-
   title,
-}: VideoCarouselProps) {
+}: InfiniteVideoCardListProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // === INFINITE LOOP SETUP ===
-
   const extendedSlides = [...slides, ...slides, ...slides];
-
-  const cardWidth = 400; // must match scroll amount
-
+  const cardWidth = 400;
   const middleIndex = slides.length;
 
   // Move scroll to middle set on mount
-
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollLeft = middleIndex * cardWidth;
@@ -93,18 +78,13 @@ export default function InfiniteVideoCardList({
   }, [middleIndex]);
 
   // Looping logic
-
   const handleScroll = () => {
     const el = scrollContainerRef.current;
-
     if (!el) return;
-
     const totalWidth = slides.length * cardWidth;
-
     const current = el.scrollLeft;
 
     // If too far left → jump forward
-
     if (current <= cardWidth) {
       el.scrollLeft += totalWidth;
     }
@@ -116,14 +96,10 @@ export default function InfiniteVideoCardList({
   };
 
   // Scroll via buttons
-
   const scroll = (direction: 'left' | 'right') => {
     const el = scrollContainerRef.current;
-
     if (!el) return;
-
     const amount = direction === 'left' ? -cardWidth : cardWidth;
-
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
@@ -131,9 +107,7 @@ export default function InfiniteVideoCardList({
     <section
       className={clsx(
         'w-full py-12 md:py-20',
-
         'bg-background text-foreground',
-
         className,
       )}
     >
@@ -144,19 +118,15 @@ export default function InfiniteVideoCardList({
 
         <div className='relative group/carousel'>
           {/* SCROLL CONTAINER */}
-
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
             className='flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 relative z-0'
             style={{
               scrollbarWidth: 'none',
-
               msOverflowStyle: 'none',
-
               maskImage:
                 'linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%)',
-
               WebkitMaskImage:
                 'linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%)',
             }}
@@ -177,7 +147,7 @@ export default function InfiniteVideoCardList({
                   className={clsx(
                     'shrink-0 snap-center',
                     'w-[85vw] sm:w-96',
-                    'overflow-hidden rounded-xl', // Removed 'group' and 'relative' from here, moved up
+                    'overflow-hidden rounded-xl',
                     'bg-card text-card-foreground',
                     'border border-border shadow-sm transition-all hover:shadow-lg',
                     'flex flex-col',
@@ -232,17 +202,11 @@ export default function InfiniteVideoCardList({
           <button
             onClick={() => scroll('left')}
             className='absolute left-4 top-1/2 -translate-y-1/2 z-50
-
                        w-12 h-12 rounded-full
-
                        bg-black/30 hover:bg-black/50 text-white backdrop-blur-sm
-
                        flex items-center justify-center
-
                        opacity-0 transition-all duration-300
-
                        group-hover/carousel:opacity-100 group-hover/carousel:translate-x-0 translate-x-4
-
                        focus:outline-none focus:ring-2 focus:ring-primary'
             aria-label='Scroll left'
           >
@@ -254,17 +218,11 @@ export default function InfiniteVideoCardList({
           <button
             onClick={() => scroll('right')}
             className='absolute right-4 top-1/2 -translate-y-1/2 z-50
-
                        w-12 h-12 rounded-full
-
                        bg-black/30 hover:bg-black/50 text-white backdrop-blur-sm
-
                        flex items-center justify-center
-
                        opacity-0 transition-all duration-300
-
                        group-hover/carousel:opacity-100 group-hover/carousel:translate-x-0 -translate-x-4
-
                        focus:outline-none focus:ring-2 focus:ring-primary'
             aria-label='Scroll right'
           >

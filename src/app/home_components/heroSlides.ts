@@ -1,7 +1,7 @@
 export const HERO_SLIDES = [
   {
     id: 1,
-    imageSrc: '/homePage/igreja.jpg',
+    imageSrc: '/homePage/carousel/igreja.jpg',
     title: 'Batista Reviver',
     subtitle: 'Uma nova chance de Reviver',
     description:
@@ -10,7 +10,7 @@ export const HERO_SLIDES = [
   },
   {
     id: 2,
-    imageSrc: '/homePage/culto_de_rede.jpg',
+    imageSrc: '/homePage/carousel/culto_de_rede.jpg',
     title: 'Cultos de Rede',
     subtitle: 'Cada semana um nova chance de Reviver',
     description: 'Cultos semanais com uma temática específica',
@@ -18,7 +18,7 @@ export const HERO_SLIDES = [
   },
   {
     id: 3,
-    imageSrc: '/homePage/encontro.jpg',
+    imageSrc: '/homePage/carousel/encontro.jpg',
     title: 'Encontro com Deus',
     subtitle: 'Uma nova chance de recomeçar',
     description:

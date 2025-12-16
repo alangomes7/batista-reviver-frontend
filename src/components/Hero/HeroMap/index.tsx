@@ -2,28 +2,12 @@ import { cn } from '@/lib/utils';
 import { ReactNode } from 'react';
 
 interface HeroMapProps {
-  /** Main heading text or React Node */
   title: string | ReactNode;
-
-  /** Subtitle text or React Node */
   description?: string | ReactNode;
-
-  /**
-   * The 'src' URL from a Google Maps embed iframe.
-   * Example: "https://www.google.com/maps/embed?..."
-   */
   mapEmbedUrl: string;
-
-  /** Optional override for the iframe title for accessibility. Defaults to title prop if string. */
   iframeTitle?: string;
-
-  /** Outer section classes */
   className?: string;
-
-  /** Inner container classes (useful for changing max-width) */
   containerClassName?: string;
-
-  /** Map iframe classes (useful for changing height or aspect ratio) */
   mapClassName?: string;
 }
 

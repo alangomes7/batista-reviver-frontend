@@ -2,27 +2,12 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 
 interface HeroVideoProps {
-  /** The main heading */
   title: string | ReactNode;
-  
-  /** The subtitle text */
   subtitle?: string | ReactNode;
-  
-  /** The Embed URL for the iframe */
   videoSrc: string;
-  
-  /** Accessibility title for the iframe */
   videoTitle?: string;
-  
-  /** * The content block on the side (Text, Buttons, etc).
-   * Using children allows for rich text and custom buttons.
-   */
   children: ReactNode;
-  
-  /** Optional: Swaps the order to Text-Left / Video-Right */
   reverse?: boolean;
-  
-  /** Optional: Override outer section classes */
   className?: string;
 }
 
@@ -41,7 +26,7 @@ export default function HeroVideo({
         'w-full py-16 md:py-24',
         'bg-background text-foreground',
         'border-b border-border',
-        className
+        className,
       )}
     >
       <div className='container mx-auto px-4'>
@@ -66,7 +51,7 @@ export default function HeroVideo({
           <div
             className={clsx(
               'w-full animate-fade-in',
-              reverse ? 'md:order-2' : 'md:order-1'
+              reverse ? 'md:order-2' : 'md:order-1',
             )}
             style={{ animationDelay: '0.2s' }}
           >
@@ -86,13 +71,11 @@ export default function HeroVideo({
           <div
             className={clsx(
               'animate-slide-in',
-              reverse ? 'md:order-1' : 'md:order-2'
+              reverse ? 'md:order-1' : 'md:order-2',
             )}
             style={{ animationDelay: '0.3s' }}
           >
-            <div className='prose prose-lg text-foreground'>
-              {children}
-            </div>
+            <div className='prose prose-lg text-foreground'>{children}</div>
           </div>
         </div>
       </div>

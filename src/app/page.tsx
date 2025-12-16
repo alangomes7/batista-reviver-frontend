@@ -1,9 +1,11 @@
 import HeroCarousel from '@/components/Hero/HeroCarousel';
 import HeroMap from '@/components/Hero/HeroMap';
 import HeroVideo from '@/components/Hero/HeroVideo';
-import { HERO_SLIDES } from './Home/heroSlides';
-import { heroCardData } from './Home/HeroCardItems';
+import { HERO_SLIDES } from './home_components/heroSlides';
+import { heroCardData } from './home_components/HeroCardItems';
 import InfiniteCardList from '@/components/InfiniteCardList';
+import HeroCardList from '@/components/Hero/HeroCardList';
+import { heroCardEstudy } from './home_components/HeroCardEstudy';
 
 export default function Home() {
   return (
@@ -35,7 +37,7 @@ export default function Home() {
       <section className='w-full'>
         <InfiniteCardList slides={heroCardData} title={'Últimos eventos'} />
       </section>
-
+      <HeroCardList title={'Estudo'} cards={heroCardEstudy} />
       <HeroMap
         title='Venha nos visitar'
         description='Nós estamos localizados no coração da cidade de Tanguá, na região metropolitana do estado do Rio de Janeiro. Venha nos fazer uma visita.'

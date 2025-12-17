@@ -31,8 +31,8 @@ export default function NavBar() {
         onLogout={logout}
       />
 
-      {/* --- FLOATING THEME BUTTON (MOBILE ONLY) --- */}
-      <div className='block md:hidden fixed bottom-8 right-8 z-50'>
+      {/* --- FLOATING THEME BUTTON --- */}
+      <div className='block fixed bottom-20 right-8 z-50'>
         <ButtonTheme />
       </div>
     </>

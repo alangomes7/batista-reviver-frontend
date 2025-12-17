@@ -1,9 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
-import Link from 'next/link';
-
 import { ReactNode, useRef, useEffect } from 'react';
+import { Card1, CardItem } from '../Card1';
 
 // --- Icons ---
 
@@ -41,28 +40,19 @@ const ArrowRightIcon = () => (
   </svg>
 );
 
-interface CardItem {
-  id: number;
-  imageSrc: string;
-  title: string | ReactNode;
-  subtitle?: string | ReactNode;
-  description: string | ReactNode;
-  href: string;
-}
-
-interface InfiniteVideoCardListProps {
+interface InfiniteCardListProps {
   slides: CardItem[];
   className?: string;
   cardClassName?: string;
   title?: string | ReactNode;
 }
 
-export default function InfiniteVideoCardList({
+export default function InfiniteCardList({
   slides,
   className,
   cardClassName,
   title,
-}: InfiniteVideoCardListProps) {
+}: InfiniteCardListProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // === INFINITE LOOP SETUP ===
@@ -88,7 +78,6 @@ export default function InfiniteVideoCardList({
     if (current <= cardWidth) {
       el.scrollLeft += totalWidth;
     }
-
     // If too far right → jump back
     else if (current >= totalWidth * 2) {
       el.scrollLeft -= totalWidth;
@@ -103,10 +92,33 @@ export default function InfiniteVideoCardList({
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
 
+  // === NEW: Click to Center Logic ===
+  const handleCardClick = (index: number) => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    // Get the specific child element corresponding to the card.
+    // Note: We add +1 to index because the first child is the <style> tag.
+    const cardElement = el.children[index + 1] as HTMLElement;
+
+    if (cardElement) {
+      // Calculate position: (Card Offset) - (Half Container) + (Half Card)
+      const containerCenter = el.clientWidth / 2;
+      const cardCenter = cardElement.offsetWidth / 2;
+      const scrollPosition =
+        cardElement.offsetLeft - containerCenter + cardCenter;
+
+      el.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <section
       className={clsx(
-        'w-full py-12 md:py-20',
+        'w-full py-6 md:py-10',
         'bg-background text-foreground',
         className,
       )}
@@ -121,84 +133,50 @@ export default function InfiniteVideoCardList({
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className='flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 relative z-0'
+            className='group/list flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-3 -mx-4 px-4 relative z-0'
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
-              maskImage:
-                'linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%)',
-              WebkitMaskImage:
-                'linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%)',
+              maskImage: `
+                linear-gradient(
+                  to right,
+                  var(--mask-transparent) 0,
+                  var(--mask-solid) var(--mask-edge-size-sm),
+                  var(--mask-solid) calc(100% - var(--mask-edge-size-sm)),
+                  var(--mask-transparent) 100%
+                )
+              `,
+              WebkitMaskImage: `
+                linear-gradient(
+                  to right,
+                  var(--mask-transparent) 0,
+                  var(--mask-solid) var(--mask-edge-size-sm),
+                  var(--mask-solid) calc(100% - var(--mask-edge-size-sm)),
+                  var(--mask-transparent) 100%
+                )
+              `,
             }}
           >
             <style>{`div::-webkit-scrollbar { display: none; }`}</style>
 
             {extendedSlides.map((slide, index) => (
-              <Link
-                // 1. KEY MUST BE HERE (Outermost element)
+              <div
                 key={`${slide.id}-${index}`}
-                href={slide.href}
-                // Optional: draggable=false helps carousel UX so user doesn't drag the link ghost
-                draggable={false}
-                // We add 'group' here so the hover effects inside work based on hovering the Link
-                className='group relative block h-full select-none'
+                onClick={() => handleCardClick(index)}
+                className={clsx(
+                  'cursor-pointer',
+                  'transition-all duration-500 ease-out',
+                  'group-hover/list:opacity-40',
+                  'hover:opacity-100!',
+                  'hover:scale-105',
+                )}
               >
-                <div
-                  className={clsx(
-                    'shrink-0 snap-center',
-                    'w-[85vw] sm:w-96',
-                    'overflow-hidden rounded-xl',
-                    'bg-card text-card-foreground',
-                    'border border-border shadow-sm transition-all hover:shadow-lg',
-                    'flex flex-col',
-                    'h-full', // Ensure height fills the Link
-                    cardClassName,
-                  )}
-                >
-                  {/* IMAGE */}
-                  <div className='relative w-full aspect-video overflow-hidden bg-muted'>
-                    <img
-                      src={slide.imageSrc}
-                      alt={String(slide.title)}
-                      className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
-                    />
-                    <div className='absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors' />
-                  </div>
-
-                  {/* CONTENT */}
-                  <div className='flex flex-1 flex-col p-5 gap-3'>
-                    {slide.subtitle && (
-                      <div className='text-xs font-bold uppercase tracking-wider text-primary'>
-                        {slide.subtitle}
-                      </div>
-                    )}
-
-                    <h3 className='text-lg font-bold leading-tight line-clamp-2 group-hover:text-primary transition-colors'>
-                      {slide.title}
-                    </h3>
-
-                    <div className='text-sm text-muted-foreground line-clamp-2'>
-                      {slide.description}
-                    </div>
-
-                    {/* 2. NESTED LINK FIX */}
-                    {/* We keep the visual "Saiba mais", but use a span. 
-            The click is handled by the parent <Link> */}
-                    {slide.href && (
-                      <div className='mt-auto pt-2'>
-                        <span className='text-sm font-medium text-primary hover:underline inline-flex items-center gap-1'>
-                          Saiba mais →
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </Link>
+                <Card1 item={slide} className={cardClassName} />
+              </div>
             ))}
           </div>
 
           {/* LEFT BUTTON */}
-
           <button
             onClick={() => scroll('left')}
             className='absolute left-4 top-1/2 -translate-y-1/2 z-50
@@ -214,7 +192,6 @@ export default function InfiniteVideoCardList({
           </button>
 
           {/* RIGHT BUTTON */}
-
           <button
             onClick={() => scroll('right')}
             className='absolute right-4 top-1/2 -translate-y-1/2 z-50

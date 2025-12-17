@@ -30,7 +30,7 @@ export default function HeroCarousel({
   return (
     <section
       className={clsx(
-        'relative w-full overflow-hidden group select-none',
+        'relative h-full w-full overflow-hidden group select-none',
         'border-b-4 border-b-muted-foreground',
         className || 'h-screen',
       )}

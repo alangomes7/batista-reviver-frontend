@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className='bg-gradient-to-b from-blue-50 to-white py-20 lg:py-32'>
+    <section className='bg-linear-to-b from-blue-50 to-white py-20 lg:py-32'>
       <div className='container mx-auto px-4 text-center'>
         <h1 className='text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6'>
           Build faster with <span className='text-blue-600'>Next.js</span>

@@ -13,7 +13,6 @@ import { NavRefs, SessionData } from '../data/types';
 import { NavLinks } from './NavLinks';
 import { AuthButtons } from './AuthButtons';
 import Logo from '../../Logo';
-import ButtonTheme from '../../ButtonTheme';
 
 interface DesktopNavProps {
   session: SessionData | null;
@@ -122,9 +121,11 @@ export const DesktopNav = ({ session, refs, logout }: DesktopNavProps) => {
         </div>
 
         {/* RIGHT — THEME + AUTH */}
-        <div className='flex items-center gap-4 ml-auto'>
-          <ButtonTheme />
-        </div>
+        {/* <div className='flex items-center gap-4 ml-auto'>
+          <AuthButtons session={undefined} onLogout={function (): void {
+            throw new Error('Function not implemented.');
+          } }/>
+        </div> */}
       </div>
     </nav>
   );

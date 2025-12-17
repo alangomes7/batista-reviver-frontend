@@ -1,39 +1,44 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-interface HeroVideoProps {
-  // content
-  title: string | ReactNode;
-  subtitle?: string | ReactNode;
+interface HeroImageProps {
+  // Section Header (Top Center)
+  heroTitle: string | ReactNode;
+  heroSubtitle?: string | ReactNode;
+
+  // Content Block (Side by Side)
+  title?: string | ReactNode;
   description?: string | ReactNode;
 
-  // video
-  videoSrc: string;
-  videoTitle?: string;
+  // Image
+  imageSrc: string;
+  imageAlt?: string;
 
-  // actions (optional)
+  // Actions (Optional)
   ctaLabel?: string;
   ctaHref?: string;
   onCtaClick?: () => void;
 
-  // layout
+  // Layout
   reverse?: boolean;
   className?: string;
 }
 
-export default function HeroVideo({
+export default function HeroImage({
+  heroTitle,
+  heroSubtitle,
   title,
-  subtitle,
   description,
-  videoSrc,
-  videoTitle = 'Video player',
+  imageSrc,
+  imageAlt = 'Hero Image',
   ctaLabel,
   ctaHref,
   onCtaClick,
   reverse = false,
   className,
-}: HeroVideoProps) {
+}: HeroImageProps) {
   return (
     <section
       className={clsx(
@@ -44,24 +49,24 @@ export default function HeroVideo({
       )}
     >
       <div className='container mx-auto px-4'>
-        {/* Header Section */}
+        {/* 1. Global Section Header */}
         <div className='text-center mb-12 md:mb-16'>
           <h2 className='text-3xl md:text-5xl font-bold text-primary mb-4 animate-fade-in'>
-            {title}
+            {heroTitle}
           </h2>
-          {subtitle && (
+          {heroSubtitle && (
             <div
               className='text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-in'
               style={{ animationDelay: '0.1s' }}
             >
-              {subtitle}
+              {heroSubtitle}
             </div>
           )}
         </div>
 
-        {/* Content Grid */}
+        {/* 2. Content Grid */}
         <div className='grid md:grid-cols-2 gap-8 lg:gap-12 items-center'>
-          {/* Video Column */}
+          {/* Image Column */}
           <div
             className={clsx(
               'w-full animate-fade-in',
@@ -69,16 +74,13 @@ export default function HeroVideo({
             )}
             style={{ animationDelay: '0.2s' }}
           >
-            {/* Aspect-video container with shadow and semantic border
-             */}
             <div className='relative w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-border'>
-              <iframe
-                className='absolute top-0 left-0 w-full h-full'
-                src={videoSrc}
-                title={videoTitle}
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                referrerPolicy='strict-origin-when-cross-origin'
-                allowFullScreen
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                className='object-cover'
+                sizes='(max-width: 768px) 100vw, 50vw'
               />
             </div>
           </div>
@@ -91,6 +93,19 @@ export default function HeroVideo({
             )}
             style={{ animationDelay: '0.3s' }}
           >
+            {/* Inner Content Title */}
+            {title && (
+              <div className='mb-4'>
+                {typeof title === 'string' ? (
+                  <h3 className='text-2xl md:text-3xl font-semibold text-primary'>
+                    {title}
+                  </h3>
+                ) : (
+                  title
+                )}
+              </div>
+            )}
+
             {/* Description */}
             {description && (
               <div className='prose prose-lg text-foreground'>

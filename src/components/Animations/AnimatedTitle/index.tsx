@@ -1,3 +1,4 @@
+'use client';
 import { motion, Variants } from 'framer-motion';
 
 /**
@@ -11,7 +12,6 @@ export const AnimatedTitle = ({
   text: string;
   subtitle?: string;
 }) => {
-  // Explicitly typing this as Variants fixes inference issues
   const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
@@ -20,7 +20,6 @@ export const AnimatedTitle = ({
     }),
   };
 
-  // Explicitly typing this as Variants fixes the 'string' vs 'spring' error
   const child: Variants = {
     visible: {
       opacity: 1,
@@ -44,19 +43,19 @@ export const AnimatedTitle = ({
 
   return (
     <motion.div
-      className='mb-12 flex flex-col items-center text-center z-10 relative px-4'
+      className='mb-10 flex flex-col items-center text-center z-10 relative px-4'
       variants={container}
       initial='hidden'
       animate='visible'
     >
       <motion.h1
-        className='text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6'
+        className='text-3xl md:text-5xl font-bold text-primary mb-4 tracking-tight'
         variants={child}
       >
         {text.split(' ').map((word, index) => (
           <span key={index} className='inline-block mr-2'>
             {word === 'Hero' ? (
-              <span className='text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500'>
+              <span className='text-transparent bg-clip-text bg-linear-to-r from-(--brand-main) to-(--brand-accent)'>
                 {word}
               </span>
             ) : (
@@ -68,7 +67,7 @@ export const AnimatedTitle = ({
 
       {subtitle && (
         <motion.p
-          className='text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed'
+          className='text-lg md:text-xl text-(--muted-foreground) max-w-2xl mx-auto leading-relaxed'
           variants={child}
         >
           {subtitle}

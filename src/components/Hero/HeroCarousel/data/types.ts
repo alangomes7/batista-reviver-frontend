@@ -2,7 +2,8 @@ import { ReactNode } from 'react';
 
 export interface HeroSlide {
   id: string | number;
-  imageSrc: string;
+  imageSrcMobile: string;
+  imageSrcVideo: string;
   href: string;
   imageAlt?: string;
   title: string;

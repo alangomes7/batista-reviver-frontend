@@ -1,69 +1,110 @@
-/* GLOBAL & SHARED VARIABLES
-  All variables that are *defined identically* for both themes are placed here.
-*/
+/* =========================================
+   GLOBAL & SHARED LOGIC
+   ========================================= */
 :root {
-  /* ---- Shared Derived Variables ---- */
+  /* ---- Shared Derived Variables (Logic) ---- */
   --brand-secondary-lightest: color-mix(in srgb, var(--brand-main) 80%, white);
+  --brand-secondary-darkest: color-mix(in srgb, var(--brand-main) 80%, black);
 
-  /* Semantic Variables */
+  /* ---- Semantic Aliases (The Public API) ---- */
   --primary: var(--brand-main);
   --primary-light: var(--brand-secondary-lightest);
   --primary-dark: var(--brand-secondary-dark);
+
+  /* Default text color on top of primary buttons/badges */
+  /* (Can be overridden per theme if contrast requires it) */
   --text-over-primary: #ffffff;
+
+  /* ===== Image / Edge Mask Tokens ===== */
+  --mask-edge-size-sm: 16px;
+  --mask-edge-size-md: 96px;
 }
 
-/* LIGHT THEME */
+/* =========================================
+   LIGHT THEME 
+   Palette: Warm Oranges, Peach, Beige, Coffee, Salmon
+   ========================================= */
 :root[data-theme='light'] {
-  /* ---- Base Colors ---- */
-  --brand-main: #f25749;
-  --base-dark: #0d0d0d;
+  /* 1. Define Palette (The 5 Swatches) */
+  --swatch-1: #f2bc79; /* Gold/Orange */
+  --swatch-2: #f2c49b; /* Peach */
+  --swatch-3: #f2d5c4; /* Pale Beige */
+  --swatch-4: #260801; /* Dark Coffee */
+  --swatch-5: #e2a382; /* Salmon Red */
 
-  /* ---- Derived Colors ---- */
-  --brand-secondary-light: color-mix(in srgb, var(--brand-main) 60%, white);
-  --brand-secondary-dark: color-mix(in srgb, var(--brand-main) 40%, black);
+  /* 2. Map Brand Colors */
+  --brand-main: var(--swatch-5); /* Main: Salmon Red */
+  --brand-secondary-light: color-mix(in srgb, var(--swatch-1) 50%, white);
+  --brand-secondary-dark: color-mix(in srgb, var(--swatch-5) 30%, black);
+  --brand-accent: var(--swatch-2); /* Accent: Peach (Added for consistency) */
 
-  /* ---- Semantic Colors ---- */
+  /* Text over primary is white (Default from Global is fine here) */
+
+  /* 3. Map Semantic UI Colors */
   --background: #ffffff;
-  --foreground: var(--base-dark);
-  --border: #e5e7eb;
+  --foreground: var(--swatch-4); /* Text: Dark Coffee */
   --card-background: #ffffff;
-  --muted-foreground: #6b7280;
+  --border: color-mix(in srgb, var(--swatch-3) 50%, #e5e7eb);
+  --muted-foreground: color-mix(in srgb, var(--swatch-4) 70%, white);
 
+  /* 4. Map Status Colors */
   --success: #22c55e;
-  --warning: #f59e0b;
+  --warning: var(--swatch-1); /* Warning: Gold/Orange */
   --error: var(--brand-main);
   --info: #3b82f6;
 
+  /* 5. Map Interactive/State Colors */
   --disabled: #e5e7eb;
   --text-disabled: #9ca3af;
-  --link-color: var(--primary);
-  --link-hover: var(--primary-dark);
+  --link-color: var(--brand-main);
+  --link-hover: var(--brand-secondary-dark);
+
+  /* 6. Map Mask Colors */
+  --mask-solid: rgba(255, 255, 255, 1); /* white fade */
+  --mask-transparent: rgba(255, 255, 255, 0);
 }
 
-/* DARK THEME */
+/* =========================================
+   DARK THEME 
+   Palette: Light Orange, Pale Peach, Muted Brown, Coffee, Deep Black
+   ========================================= */
 :root[data-theme='dark'] {
-  /* ---- Base Colors ---- */
-  --brand-main: #3190a5;
+  /* 1. Define Palette (The 5 Swatches) */
+  --swatch-1: #f2c288; /* Light Orange */
+  --swatch-2: #f2ceae; /* Pale Peach */
+  --swatch-3: #8c6f5e; /* Muted Brown */
+  --swatch-4: #260801; /* Dark Coffee */
+  --swatch-5: #0d0300; /* Deep Black */
 
-  /* ---- Derived Colors ---- */
-  --brand-secondary-light: color-mix(in srgb, var(--brand-main) 65%, white);
-  --brand-secondary-dark: color-mix(in srgb, var(--brand-main) 45%, black);
-  --brand-accent: color-mix(in srgb, var(--brand-main) 55%, #05a678);
+  /* 2. Map Brand Colors */
+  --brand-main: var(--swatch-1); /* Main: Light Orange */
+  --brand-secondary-light: color-mix(in srgb, var(--swatch-2) 80%, white);
+  --brand-secondary-dark: color-mix(in srgb, var(--swatch-1) 60%, black);
+  --brand-accent: var(--swatch-3); /* Accent: Muted Brown */
 
-  /* ---- Semantic Colors ---- */
-  --background: #111827;
-  --foreground: #f9fafb;
-  --border: #374151;
-  --card-background: #1f2937;
-  --muted-foreground: #9ca3af;
+  /* Override: Orange main color needs dark text for contrast */
+  --text-over-primary: var(--swatch-5);
 
-  --success: var(--brand-accent);
+  /* 3. Map Semantic UI Colors */
+  --background: var(--swatch-5); /* BG: Deep Black */
+  --foreground: var(--swatch-2); /* Text: Pale Peach */
+  --card-background: color-mix(in srgb, var(--swatch-4) 40%, var(--swatch-5));
+  --border: var(--swatch-4);
+  --muted-foreground: color-mix(in srgb, var(--swatch-2) 60%, transparent);
+
+  /* 4. Map Status Colors */
+  --success: var(--brand-secondary-light);
   --warning: #fbbf24;
   --error: #f87171;
-  --info: var(--brand-secondary-dark);
+  --info: var(--brand-accent);
 
-  --disabled: #374151;
+  /* 5. Map Interactive/State Colors */
+  --disabled: var(--swatch-4);
   --text-disabled: #6b7280;
-  --link-color: var(--primary-light);
-  --link-hover: var(--brand-secondary-light);
+  --link-color: var(--brand-main);
+  --link-hover: var(--swatch-2);
+
+  /* 6. Map Mask Colors */
+  --mask-solid: rgba(0, 0, 0, 1); /* black fade */
+  --mask-transparent: rgba(0, 0, 0, 0);
 }

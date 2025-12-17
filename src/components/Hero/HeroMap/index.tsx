@@ -26,7 +26,7 @@ export default function HeroMap({
   return (
     <section
       className={cn(
-        'w-full px-0 py-0 md:py-20',
+        'w-full px-0 py-0',
         'bg-background text-foreground',
         className,
       )}
@@ -36,7 +36,7 @@ export default function HeroMap({
       >
         {/* Header Section */}
         <div className='space-y-4 text-center animate-fade-in'>
-          <h1 className='text-3xl md:text-5xl font-bold tracking-tight text-primary'>
+          <h1 className='text-3xl md:text-5xl font-bold text-primary mb-4 tracking-tight text-primary'>
             {title}
           </h1>
 

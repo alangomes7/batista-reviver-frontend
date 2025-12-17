@@ -26,14 +26,30 @@ export const HeroSlideItem = ({
         draggable={false}
       >
         <div className='absolute inset-0 w-full h-full'>
-          <Image
-            src={slide.imageSrc}
-            alt={slide.imageAlt || 'Banner Background'}
-            fill
-            priority={index === currentIndex || index === currentIndex + 1}
-            className='object-cover select-none'
-            draggable={false}
-          />
+          {/* Mobile / Vertical Image - Only render if src exists */}
+          {slide.imageSrcMobile && (
+            <Image
+              src={slide.imageSrcMobile}
+              alt={slide.imageAlt || 'Mobile Background'}
+              fill
+              priority={index === currentIndex || index === currentIndex + 1}
+              className='object-cover select-none block md:hidden'
+              draggable={false}
+            />
+          )}
+
+          {/* Desktop / Video Aspect Image - Only render if src exists */}
+          {slide.imageSrcVideo && (
+            <Image
+              src={slide.imageSrcVideo}
+              alt={slide.imageAlt || 'Desktop Background'}
+              fill
+              priority={index === currentIndex || index === currentIndex + 1}
+              className='object-cover select-none hidden md:block'
+              draggable={false}
+            />
+          )}
+
           <div className={clsx('absolute inset-0', overlayOpacity)} />
         </div>
 

@@ -8,6 +8,8 @@ import { HERO_CARD_ESTUDO } from './home_data/hero_card_estudo';
 import HeroImage from '@/components/Hero/HeroImage';
 import HeroArt from '@/components/Hero/HeroArt';
 import HeroCardList from '@/components/Hero/HeroCardList';
+import HeroStore from '@/components/Hero/HeroStore';
+import { HERO_STORE } from './home_data/hero_store';
 
 export default function Home() {
   return (
@@ -45,6 +47,16 @@ export default function Home() {
         subtitle='Acompanhe os nossos guias de estudos'
         cards={HERO_CARD_ESTUDO}
       />
+      <HeroStore
+        imgBackground={HERO_STORE}
+        title={'Conheça a nossa loja'}
+        subtitle={'Presentei com Use Reviver'}
+        imgLogo={'/homePage/store/logo.png'}
+        storeName={'Use Reviver'}
+        buttonLink={'https://store.igbatistareviver.com.br/'}
+        buttonText={'Acessar a loja'}
+      />
+      <div className='m-8' />
       <HeroMap
         title='Venha nos visitar'
         description='Nós estamos localizados no coração da cidade de Tanguá, na região metropolitana do estado do Rio de Janeiro. Venha nos fazer uma visita.'

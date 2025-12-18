@@ -111,7 +111,7 @@ export default function HeroArt({
           {showButton && ctaHref && (
             <Link
               href={ctaHref}
-              className='inline-flex items-center gap-4 border-2 border-white px-10 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-black transition-colors'
+              className='inline-flex items-center gap-4 border-2 border-white px-10 py-4 rounded-full md:text-lg font-medium hover:bg-white hover:text-black transition-colors'
             >
               {ctaLabel || 'Learn More'}
               <svg
